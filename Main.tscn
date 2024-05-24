@@ -17,12 +17,3 @@ size = Vector3(60, 2, 60)
 material = SubResource("StandardMaterial3D_jp06v")
 
 [node name="Player" parent="." instance=ExtResource("1_hm0pk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002, 0, -0.025)
-
-[node name="Plant" parent="Player/Pot" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="Direction Indicator" parent="Player/Pot" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[editable path="Player"]

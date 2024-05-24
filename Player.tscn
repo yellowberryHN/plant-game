@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c43go38388ts"]
+[gd_scene load_steps=11 format=3 uid="uid://c43go38388ts"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_wyg3h"]
 [ext_resource type="PackedScene" uid="uid://cwa50pylqll81" path="res://resources/models/Pot.glb" id="2_xytyt"]
@@ -7,8 +7,25 @@
 height = 2.5
 radius = 1.25
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_jh3d2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo0cf"]
+albedo_color = Color(1, 0, 0.282353, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pl6uw"]
+material = SubResource("StandardMaterial3D_mo0cf")
+
 [sub_resource type="BoxMesh" id="BoxMesh_ge20q"]
 size = Vector3(0.25, 0.25, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj3ha"]
+
+[sub_resource type="Sky" id="Sky_wpvwt"]
+sky_material = SubResource("ProceduralSkyMaterial_fj3ha")
+
+[sub_resource type="Environment" id="Environment_7rqpu"]
+background_mode = 2
+sky = SubResource("Sky_wpvwt")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_wyg3h")
@@ -22,14 +39,23 @@ shape = SubResource("CylinderShape3D_jb1ms")
 [node name="Plant" type="Node3D" parent="Pot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 
+[node name="Normal" type="MeshInstance3D" parent="Pot/Plant"]
+visible = false
+mesh = SubResource("CylinderMesh_jh3d2")
+
+[node name="BerryBush" type="MeshInstance3D" parent="Pot/Plant"]
+visible = false
+mesh = SubResource("CylinderMesh_pl6uw")
+
 [node name="Direction Indicator" type="MeshInstance3D" parent="Pot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18561, -1.73061)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -2)
 mesh = SubResource("BoxMesh_ge20q")
 skeleton = NodePath("")
 
 [node name="CameraPivot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.930418, 0.366501, 0, -0.366501, 0.930418, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.930417, -0.366501, 0, 0.366501, 0.930417, 0, 1.84228, 17.0293)
+transform = Transform3D(1, 0, 0, 0, 0.930418, -0.366501, 0, 0.366501, 0.930418, 0, 1.0768, 13.2523)
+environment = SubResource("Environment_7rqpu")
 current = true
