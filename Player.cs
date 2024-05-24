@@ -6,7 +6,10 @@ public partial class Player : CharacterBody3D
 {
 	public const float Speed = 5.0f;
 	public const float JumpVelocity = 4.5f;
+	
+	[Export]
 	public PlantType current_type = PlantType.Normal;
+	
 	private List<PlantType> unlocked_types = new() { PlantType.Normal };
 	private Dictionary<PlantType, Node3D> plant_models = new();
 	private int type_index = 0;
