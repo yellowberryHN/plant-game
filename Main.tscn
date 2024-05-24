@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsoy603st0kav"]
+[gd_scene load_steps=4 format=3 uid="uid://c1wgh7cbhe34n"]
+
+[ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ou41g"]
 size = Vector3(60, 2, 60)
@@ -24,3 +26,6 @@ shape = SubResource("BoxShape3D_ou41g")
 
 [node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("BoxMesh_rgvvj")
+
+[node name="Player" parent="." instance=ExtResource("1_hm0pk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.58491, 0)

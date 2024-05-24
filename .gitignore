@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Rider garbage that we don't need
+.idea/

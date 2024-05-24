@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c43go38388ts"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_wyg3h"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jb1ms"]
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq78d"]
+albedo_color = Color(0.520232, 0.217576, 0.0778387, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dfylu"]
+material = SubResource("StandardMaterial3D_jq78d")
+height = 1.0
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_wyg3h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_jb1ms")
+
+[node name="Pot" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_dfylu")
+
+[node name="Plant" type="Node3D" parent="Pot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
