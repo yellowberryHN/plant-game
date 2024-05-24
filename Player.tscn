@@ -1,27 +1,35 @@
 [gd_scene load_steps=5 format=3 uid="uid://c43go38388ts"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_wyg3h"]
+[ext_resource type="PackedScene" uid="uid://cwa50pylqll81" path="res://resources/models/Pot.glb" id="2_xytyt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jb1ms"]
-height = 1.0
+height = 2.5
+radius = 1.25
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq78d"]
-albedo_color = Color(0.520232, 0.217576, 0.0778387, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_dfylu"]
-material = SubResource("StandardMaterial3D_jq78d")
-height = 1.0
+[sub_resource type="BoxMesh" id="BoxMesh_ge20q"]
+size = Vector3(0.25, 0.25, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_wyg3h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("CylinderShape3D_jb1ms")
 
-[node name="Pot" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("CylinderMesh_dfylu")
+[node name="Pot" parent="." instance=ExtResource("2_xytyt")]
 
 [node name="Plant" type="Node3D" parent="Pot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+
+[node name="Direction Indicator" type="MeshInstance3D" parent="Pot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.18561, -1.73061)
+mesh = SubResource("BoxMesh_ge20q")
+skeleton = NodePath("")
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.930418, 0.366501, 0, -0.366501, 0.930418, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.930417, -0.366501, 0, 0.366501, 0.930417, 0, 1.84228, 17.0293)
+current = true
