@@ -1,4 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://kbuwb8vk6xwi"]
+[gd_scene load_steps=10 format=3 uid="uid://kbuwb8vk6xwi"]
+
+[ext_resource type="Material" uid="uid://dkllnk7rsr4e3" path="res://resources/materials/Grass.material" id="1_tqyyr"]
+[ext_resource type="Material" uid="uid://dh121672msya" path="res://resources/materials/Brick.material" id="2_uoo4h"]
+[ext_resource type="Material" uid="uid://cef1xoaxtlxu4" path="res://resources/materials/Fence.material" id="3_wkvn1"]
+[ext_resource type="Material" uid="uid://b8vdn04eq436k" path="res://resources/materials/Tree.material" id="4_uah6e"]
+[ext_resource type="Material" uid="uid://2offynbeelsx" path="res://resources/materials/Cliff.material" id="5_vd5yo"]
+[ext_resource type="Material" uid="uid://k6q4b1ykt7yp" path="res://resources/materials/Water.material" id="6_7yx6c"]
+[ext_resource type="Material" uid="uid://ccu3k7q2llev0" path="res://resources/materials/Rock.material" id="7_hhscq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ya6gr"]
 size = Vector3(20, 65.6261, 80.9115)
@@ -12,45 +20,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="Ground" type="CSGBox3D" parent="."]
-transform = Transform3D(100, 0, 0, 0, 2, 0, 0, 0, 100, 0, 0, -76.8555)
+transform = Transform3D(100, 0, 0, 0, 2, 0, 0, 0, 100, 0, -17.7627, -28.2593)
 use_collision = true
-size = Vector3(1, 1, 2.53711)
+size = Vector3(1, 18.7627, 2.11743)
+material = ExtResource("1_tqyyr")
 
 [node name="House" type="Node3D" parent="."]
 
 [node name="BaseRectangle" type="CSGBox3D" parent="House"]
 transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10.9475, 37.6581)
 use_collision = true
+material = ExtResource("2_uoo4h")
 
 [node name="Fencing" type="Node3D" parent="House"]
 
 [node name="Gate" type="CSGBox3D" parent="House/Fencing"]
 transform = Transform3D(1.76001, 0, -3.79971, 0, 10, 0, 0.949928, 0, 7.04004, 5.04938, 5.32652, -18.5513)
 use_collision = true
+material = ExtResource("3_wkvn1")
 
 [node name="RightFence" type="CSGBox3D" parent="House/Fencing"]
 transform = Transform3D(-8.74228e-08, 0, 20, 0, 10, 0, -2, 0, -8.74228e-07, 24.2695, 5.32652, 34.4305)
 use_collision = true
+material = ExtResource("3_wkvn1")
 
 [node name="RightFenceFront" type="CSGBox3D" parent="House/Fencing"]
 transform = Transform3D(-8.74228e-08, 0, 30, 0, 10, 0, -2, 0, -1.31134e-06, 18.9716, 5.32652, -13.6024)
 use_collision = true
+material = ExtResource("3_wkvn1")
 
 [node name="LeftFenceFront" type="CSGBox3D" parent="House/Fencing"]
 transform = Transform3D(-8.74228e-08, 0, 30, 0, 10, 0, -2, 0, -1.31134e-06, -19.7903, 5.32652, -13.6024)
 use_collision = true
+material = ExtResource("3_wkvn1")
 
 [node name="RightLongFence" type="CSGBox3D" parent="House/Fencing"]
 transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 50, 33.3562, 5.32652, 10.3725)
 use_collision = true
+material = ExtResource("3_wkvn1")
 
 [node name="LeftLongFence" type="CSGBox3D" parent="House/Fencing"]
 transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 50, -34.0876, 5.32652, 10.3725)
 use_collision = true
+material = ExtResource("3_wkvn1")
 
 [node name="LeftFence" type="CSGBox3D" parent="House/Fencing"]
 transform = Transform3D(-8.74228e-08, 0, 20, 0, 10, 0, -2, 0, -8.74228e-07, -24.6121, 5.32652, 34.4305)
 use_collision = true
+material = ExtResource("3_wkvn1")
 
 [node name="Bushes" type="Node3D" parent="House"]
 
@@ -85,153 +102,192 @@ size = Vector3(2.36121, 1, 1)
 
 [node name="Tree" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 36.8702, 30.6345, 0)
+material = ExtResource("4_uah6e")
 
 [node name="Tree2" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 41.818, 30.6345, -13.7503)
 use_collision = true
+material = ExtResource("4_uah6e")
 
 [node name="Tree3" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 45.3341, 30.6345, -10.1404)
+material = ExtResource("4_uah6e")
 
 [node name="Tree4" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 48.0692, 30.6345, -14.7816)
 use_collision = true
+material = ExtResource("4_uah6e")
 
 [node name="Tree5" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 38.2702, 30.6345, -12.6064)
+material = ExtResource("4_uah6e")
 
 [node name="Tree6" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 45.6168, 30.6345, 13.1057)
+material = ExtResource("4_uah6e")
 
 [node name="Tree8" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 44.6832, 30.6345, 24.4333)
+material = ExtResource("4_uah6e")
 
 [node name="Tree9" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 43.9657, 30.6345, 45.4741)
+material = ExtResource("4_uah6e")
 
 [node name="Tree10" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 26.8894, 30.6345, 41.1421)
+material = ExtResource("4_uah6e")
 
 [node name="Tree11" type="CSGCylinder3D" parent="House/Trees/RightSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 21.4539, 30.6345, 48.2455)
+material = ExtResource("4_uah6e")
 
 [node name="LeftSide" type="Node3D" parent="House/Trees"]
 
 [node name="Tree12" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -43.5783, 30.6345, 0)
+material = ExtResource("4_uah6e")
 
 [node name="Tree13" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -39.4347, 30.6345, -14.3422)
 use_collision = true
+material = ExtResource("4_uah6e")
 
 [node name="Tree14" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -42.7831, 30.6345, -12.3127)
+material = ExtResource("4_uah6e")
 
 [node name="Tree15" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -45.2785, 30.6345, -17.5353)
 use_collision = true
+material = ExtResource("4_uah6e")
 
 [node name="Tree16" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -47.4664, 30.6345, -12.5142)
+material = ExtResource("4_uah6e")
 
 [node name="Tree17" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -46.005, 30.6345, -7.00869)
+material = ExtResource("4_uah6e")
 
 [node name="Tree18" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -39.0799, 30.6345, 4.38687)
+material = ExtResource("4_uah6e")
 
 [node name="Tree19" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -46.6127, 30.6345, 11.4629)
+material = ExtResource("4_uah6e")
 
 [node name="Tree22" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -39.682, 30.6345, 27.8392)
+material = ExtResource("4_uah6e")
 
 [node name="Tree24" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -35.682, 30.6345, 45.8392)
+material = ExtResource("4_uah6e")
 
 [node name="Tree26" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -22.682, 30.6345, 44.8392)
+material = ExtResource("4_uah6e")
 
 [node name="Tree28" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -3.256, 30.6345, 56.7585)
+material = ExtResource("4_uah6e")
 
 [node name="Tree29" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -23.1787, 30.6345, 59.1536)
+material = ExtResource("4_uah6e")
 
 [node name="Tree30" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 9.10314, 30.6345, 55.2501)
+material = ExtResource("4_uah6e")
 
 [node name="Tree31" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 17.5033, 30.6345, 60.5714)
+material = ExtResource("4_uah6e")
 
 [node name="Tree33" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
 transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 31.1771, 30.6345, 57.2287)
+material = ExtResource("4_uah6e")
 
 [node name="Front" type="Node3D" parent="House/Trees"]
 
 [node name="Tree13" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 38.2702, 30.6345, -39.4181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.2702, 30.6345, -39.4181)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree14" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 25.8042, 30.6345, -29.8627)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.8042, 30.6345, -29.8627)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree15" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 6.68443, 30.6345, -45.2751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68443, 30.6345, -45.2751)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree19" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 21.2475, 30.6345, -66.6033)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2475, 30.6345, -66.6033)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree20" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -15.2305, 30.6345, -84.8437)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.2305, 30.6345, -84.8437)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree21" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 39.2048, 30.6345, -114.054)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.2048, 30.6345, -114.054)
 use_collision = true
-
-[node name="Tree22" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -7.47675, 30.6345, -139.921)
-use_collision = true
-
-[node name="Tree23" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 31.7441, 30.6345, -153.782)
-use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree24" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 17.6968, 30.6345, -125.946)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6968, 30.6345, -125.946)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree25" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -38.868, 30.6345, -115.48)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.868, 30.6345, -115.48)
 use_collision = true
-
-[node name="Tree26" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -34.9832, 30.6345, -163.853)
-use_collision = true
-
-[node name="Tree27" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -15.4897, 30.6345, -182.605)
-use_collision = true
-
-[node name="Tree28" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 26.9103, 30.6345, -199.999)
-use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree16" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -16.5248, 30.6345, -33.1575)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5248, 30.6345, -33.1575)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree17" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -25.1067, 30.6345, -46.407)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1067, 30.6345, -46.407)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="Tree18" type="CSGCylinder3D" parent="House/Trees/Front"]
-transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -44.0442, 30.6345, -31.4142)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.0442, 30.6345, -31.4142)
 use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
 
 [node name="CollisionBoxes" type="Node3D" parent="."]
 
@@ -258,3 +314,358 @@ shape = SubResource("BoxShape3D_ya6gr")
 [node name="LeftOfHouse" type="CollisionShape3D" parent="CollisionBoxes/LeftOfHouse"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.281, 17.813, 26.2438)
 shape = SubResource("BoxShape3D_ya6gr")
+
+[node name="SideCliffs" type="Node3D" parent="."]
+
+[node name="LeftLongBox" type="CSGBox3D" parent="SideCliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.1889, 8.30906, -106.655)
+use_collision = true
+size = Vector3(30, 96.793, 381.006)
+material = ExtResource("5_vd5yo")
+
+[node name="LeftLongBoxMid" type="CSGBox3D" parent="SideCliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.1889, 56.2622, -478.165)
+use_collision = true
+size = Vector3(30, 200, 381.006)
+material = ExtResource("5_vd5yo")
+
+[node name="RightLongBox" type="CSGBox3D" parent="SideCliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.0285, 5.13108, -108.002)
+use_collision = true
+size = Vector3(30, 103.149, 377.113)
+material = ExtResource("5_vd5yo")
+
+[node name="RightLongBoxMid" type="CSGBox3D" parent="SideCliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.0285, 56.6433, -479.512)
+use_collision = true
+size = Vector3(30, 200, 377.113)
+material = ExtResource("5_vd5yo")
+
+[node name="BackBox" type="CSGBox3D" parent="SideCliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.765717, 26.7011, 87.3282)
+use_collision = true
+size = Vector3(158.381, 59.4961, 30)
+material = ExtResource("5_vd5yo")
+
+[node name="LeftBackToMidSlope" type="CSGPolygon3D" parent="SideCliffs"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -79.0792, 56.0611, -289.45)
+polygon = PackedVector2Array(0, 0, 0, 100, 200, 0)
+depth = 30.0
+material = ExtResource("5_vd5yo")
+
+[node name="RightBackToMidSlope" type="CSGPolygon3D" parent="SideCliffs"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48.4911, 56.0611, -292.436)
+polygon = PackedVector2Array(0, 0, 0, 100, 200, 0)
+depth = 30.0
+material = ExtResource("5_vd5yo")
+
+[node name="FirstRiver" type="Node3D" parent="."]
+
+[node name="Tree" type="CSGCylinder3D" parent="FirstRiver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47675, 62.0219, -242.127)
+use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree1" type="CSGCylinder3D" parent="FirstRiver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4897, 54.8239, -182.605)
+use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree2" type="CSGCylinder3D" parent="FirstRiver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9103, 54.8239, -199.999)
+use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
+
+[node name="River" type="CSGBox3D" parent="FirstRiver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0255995, -19.441, -147.997)
+use_collision = true
+size = Vector3(100, 30, 30)
+material = ExtResource("6_7yx6c")
+
+[node name="Log" type="CSGCylinder3D" parent="FirstRiver"]
+transform = Transform3D(0.909236, 0.416281, 1.38023e-08, -0.0517341, 0.112997, 0.992248, 0.413054, -0.902187, 0.124277, 0, 5.30968, -148.539)
+use_collision = true
+radius = 2.0
+height = 50.0
+material = ExtResource("4_uah6e")
+
+[node name="BankAfter" type="CSGBox3D" parent="FirstRiver"]
+transform = Transform3D(1, 0, 0, 0, 0.994282, -0.106785, 0, 0.106785, 0.994282, 0, -12.7577, -222.188)
+use_collision = true
+size = Vector3(110, 50, 118.294)
+material = ExtResource("1_tqyyr")
+
+[node name="TallStump" type="CSGCylinder3D" parent="FirstRiver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.636, 2, -122.751)
+use_collision = true
+radius = 2.0
+material = ExtResource("4_uah6e")
+
+[node name="ShortStump" type="CSGCylinder3D" parent="FirstRiver"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.687, 1, -118.788)
+use_collision = true
+radius = 2.0
+material = ExtResource("4_uah6e")
+
+[node name="FirstStaircase" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="FirstStaircase"]
+transform = Transform3D(1, 0, 0, 0, 0.989432, -0.144995, 0, 0.144995, 0.989432, 0, 11.5183, -351.17)
+use_collision = true
+size = Vector3(110, 50, 155.251)
+material = ExtResource("1_tqyyr")
+
+[node name="Tree" type="CSGCylinder3D" parent="FirstStaircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.1754, 70.8606, -304.837)
+use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree1" type="CSGCylinder3D" parent="FirstStaircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9832, 71.5832, -289.381)
+use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree2" type="CSGCylinder3D" parent="FirstStaircase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7837, 71.5832, -351.066)
+use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree3" type="CSGCylinder3D" parent="FirstStaircase"]
+transform = Transform3D(0.965573, 0.249569, -0.0733812, 0.0402275, 0.135444, 0.989968, 0.257005, -0.958838, 0.120741, -5.24463, 36.9376, -351.066)
+use_collision = true
+radius = 2.0
+height = 70.0
+material = ExtResource("4_uah6e")
+
+[node name="Cliffs" type="Node3D" parent="FirstStaircase"]
+
+[node name="BigCliff" type="CSGBox3D" parent="FirstStaircase/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0526, 25.9792, -271.614)
+use_collision = true
+size = Vector3(97.5968, 33.3524, 30)
+material = ExtResource("5_vd5yo")
+
+[node name="LeftOfStair" type="CSGBox3D" parent="FirstStaircase/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2331, 20.2205, -260.483)
+use_collision = true
+size = Vector3(13.3218, 21.8352, 7.73926)
+material = ExtResource("5_vd5yo")
+
+[node name="LeftOfStair2" type="CSGBox3D" parent="FirstStaircase/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7542, 18.0038, -262.054)
+use_collision = true
+size = Vector3(13.3218, 17.4018, 4.59772)
+material = ExtResource("5_vd5yo")
+
+[node name="PileOfLogs" type="Node3D" parent="FirstStaircase"]
+
+[node name="Tree" type="CSGCylinder3D" parent="FirstStaircase/PileOfLogs"]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, -5.24463, 29.9912, -292.983)
+use_collision = true
+radius = 2.0
+height = 40.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree1" type="CSGCylinder3D" parent="FirstStaircase/PileOfLogs"]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, -5.24463, 29.4513, -288.952)
+use_collision = true
+radius = 2.0
+height = 40.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree2" type="CSGCylinder3D" parent="FirstStaircase/PileOfLogs"]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, -5.24463, 32.8424, -290.465)
+use_collision = true
+radius = 2.0
+height = 40.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree3" type="CSGCylinder3D" parent="FirstStaircase/PileOfLogs"]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, -5.24463, 35.6776, -288.272)
+use_collision = true
+radius = 2.0
+height = 40.0
+material = ExtResource("4_uah6e")
+
+[node name="Stairs" type="Node3D" parent="FirstStaircase"]
+
+[node name="BottomStair" type="CSGBox3D" parent="FirstStaircase/Stairs"]
+transform = Transform3D(0.996587, 0, 0.0825473, 0, 1, 0, -0.0825473, 0, 0.996587, 31.5567, 17.0844, -258.719)
+use_collision = true
+size = Vector3(10, 4, 3)
+material = ExtResource("7_hhscq")
+
+[node name="MidStair" type="CSGBox3D" parent="FirstStaircase/Stairs"]
+transform = Transform3D(0.994824, 0.0163106, 0.100294, 0, 0.987033, -0.160519, -0.101612, 0.159688, 0.981924, 35.4858, 17.4716, -262.579)
+use_collision = true
+size = Vector3(13.093, 6.21973, 5)
+material = ExtResource("7_hhscq")
+
+[node name="TopStair" type="CSGBox3D" parent="FirstStaircase/Stairs"]
+transform = Transform3D(0.989506, 0.0413988, 0.138437, 0, 0.958078, -0.286508, -0.144494, 0.283501, 0.948024, 35.5314, 20.0669, -270.042)
+use_collision = true
+size = Vector3(27.431, 7.52832, 10.2295)
+material = ExtResource("7_hhscq")
+
+[node name="Stump" type="CSGCylinder3D" parent="FirstStaircase/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1743, 15.5851, -252.587)
+use_collision = true
+radius = 2.0
+material = ExtResource("4_uah6e")
+
+[node name="Stump2" type="CSGCylinder3D" parent="FirstStaircase/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.0373, 16.74, -254.981)
+use_collision = true
+radius = 2.0
+material = ExtResource("4_uah6e")
+
+[node name="SecondStairs" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="SecondStairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.3763, -479.054)
+use_collision = true
+size = Vector3(110, 50, 126.012)
+material = ExtResource("1_tqyyr")
+
+[node name="Tree" type="CSGCylinder3D" parent="SecondStairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7837, 100.476, -484.216)
+use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
+
+[node name="Tree2" type="CSGCylinder3D" parent="SecondStairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9551, 100.476, -514.364)
+use_collision = true
+radius = 2.0
+height = 100.0
+material = ExtResource("4_uah6e")
+
+[node name="Cliffs" type="Node3D" parent="SecondStairs"]
+
+[node name="Stair" type="CSGBox3D" parent="SecondStairs/Cliffs"]
+transform = Transform3D(0.979357, 0.00634224, -0.202038, 0, 0.999508, 0.0313758, 0.202138, -0.0307281, 0.978875, -8.10687, 53.7225, -424.562)
+use_collision = true
+size = Vector3(9.62068, 12.3479, 9.02777)
+material = ExtResource("7_hhscq")
+
+[node name="Stair1" type="CSGBox3D" parent="SecondStairs/Cliffs"]
+transform = Transform3D(0.989616, -0.00450979, 0.143664, 0, 0.999508, 0.0313758, -0.143734, -0.03105, 0.989129, 1.99178, 56.7909, -427.237)
+use_collision = true
+size = Vector3(13.5814, 18.6505, 13.4342)
+material = ExtResource("7_hhscq")
+
+[node name="BigCliff" type="CSGBox3D" parent="SecondStairs/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3721, 55.7076, -408.032)
+use_collision = true
+size = Vector3(97.5968, 33.3524, 30)
+material = ExtResource("5_vd5yo")
+
+[node name="CliffRamp" type="CSGBox3D" parent="SecondStairs/Cliffs"]
+transform = Transform3D(-0.178469, -0.00835707, -0.98391, -0.108255, 0.99406, 0.0111928, 0.977972, 0.108511, -0.178313, 16.8995, 50.2199, -354.645)
+use_collision = true
+size = Vector3(94.5251, 34.2144, 18.686)
+material = ExtResource("5_vd5yo")
+
+[node name="Stairs" type="Node3D" parent="SecondStairs"]
+
+[node name="Stump" type="CSGCylinder3D" parent="SecondStairs/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.8875, 42.6692, -392.388)
+use_collision = true
+radius = 2.0
+material = ExtResource("4_uah6e")
+
+[node name="BottomStair" type="CSGBox3D" parent="SecondStairs/Stairs"]
+transform = Transform3D(0.991892, 0, 0.127082, 0, 1, 0, -0.127082, 0, 0.991892, -46.0693, 41.0658, -396.973)
+use_collision = true
+size = Vector3(8.33392, 7.35364, 4.18115)
+material = ExtResource("7_hhscq")
+
+[node name="BottomStair2" type="CSGBox3D" parent="SecondStairs/Stairs"]
+transform = Transform3D(0.95367, -0.0358884, -0.298707, 0, 0.99286, -0.119288, 0.300856, 0.113761, 0.94686, -40.7791, 42.4118, -403.193)
+use_collision = true
+size = Vector3(6.21086, 7.35364, 5.22827)
+material = ExtResource("7_hhscq")
+
+[node name="BottomStair3" type="CSGBox3D" parent="SecondStairs/Stairs"]
+transform = Transform3D(0.977999, -0.0526903, -0.201848, 0, 0.967577, -0.252576, 0.208612, 0.247019, 0.946289, -29.4144, 43.0179, -410.762)
+use_collision = true
+size = Vector3(13.4681, 9.91754, 9.66531)
+material = ExtResource("7_hhscq")
+
+[node name="BottomStair4" type="CSGBox3D" parent="SecondStairs/Stairs"]
+transform = Transform3D(0.997839, 0.0307416, 0.0580632, 0, 0.883774, -0.467914, -0.0656992, 0.466903, 0.881864, -38.0045, 45.6291, -417.109)
+use_collision = true
+size = Vector3(24.56, 12.3479, 8.24457)
+material = ExtResource("7_hhscq")
+
+[node name="SecondRiver" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="SecondRiver"]
+transform = Transform3D(1, 0, 0, 0, 0.996535, -0.0831735, 0, 0.0831735, 0.996535, 0, 38.039, -635.069)
+use_collision = true
+size = Vector3(110, 52.8058, 71.6796)
+material = ExtResource("1_tqyyr")
+
+[node name="River" type="Node3D" parent="SecondRiver"]
+
+[node name="Rock" type="CSGBox3D" parent="SecondRiver/River"]
+transform = Transform3D(0.96817, -0.00785323, 0.250172, 0, 0.999508, 0.0313758, -0.250296, -0.0303771, 0.967693, -7.86009, 47.4727, -548.952)
+use_collision = true
+size = Vector3(9.62068, 12.3479, 6.58484)
+material = ExtResource("7_hhscq")
+
+[node name="Rock2" type="CSGBox3D" parent="SecondRiver/River"]
+transform = Transform3D(1, 0, 0, 0, 0.999508, 0.0313758, 0, -0.0313758, 0.999508, -2.93664, 48.5546, -560.363)
+use_collision = true
+size = Vector3(13.4616, 12.3479, 10.6323)
+material = ExtResource("7_hhscq")
+
+[node name="Rock3" type="CSGBox3D" parent="SecondRiver/River"]
+transform = Transform3D(0.867453, 0.0156101, -0.497274, 0, 0.999508, 0.0313758, 0.497519, -0.0272171, 0.867026, -2.30591, 49.4067, -559.9)
+use_collision = true
+size = Vector3(8.10633, 12.3479, 5.58123)
+material = ExtResource("7_hhscq")
+
+[node name="Rock4" type="CSGBox3D" parent="SecondRiver/River"]
+transform = Transform3D(0.867453, 0.0156101, -0.497274, 0, 0.999508, 0.0313758, 0.497519, -0.0272171, 0.867026, -1.71456, 50.3582, -560.851)
+use_collision = true
+size = Vector3(5.11582, 12.3479, 3.34178)
+material = ExtResource("7_hhscq")
+
+[node name="Rock5" type="CSGBox3D" parent="SecondRiver/River"]
+transform = Transform3D(0.867453, 0.0156101, -0.497274, 0, 0.999508, 0.0313758, 0.497519, -0.0272171, 0.867026, 10.1909, 52.2655, -593.949)
+use_collision = true
+size = Vector3(22.2474, 14.0543, 34.0336)
+material = ExtResource("7_hhscq")
+
+[node name="Rock6" type="CSGBox3D" parent="SecondRiver/River"]
+transform = Transform3D(0.626862, 0.0244459, -0.778746, -0.00224373, 0.99956, 0.0295713, 0.779127, -0.0167899, 0.626641, 16.7977, 52.6537, -600.988)
+use_collision = true
+size = Vector3(23.9588, 15.4458, 29.9096)
+material = ExtResource("7_hhscq")
+
+[node name="Log" type="CSGCylinder3D" parent="SecondRiver/River"]
+transform = Transform3D(0.852768, 0.500689, -0.148653, 0, 0.284618, 0.958641, 0.52229, -0.817498, 0.242713, 4.78566, 59.1022, -570.072)
+use_collision = true
+radius = 2.0
+height = 20.0
+material = ExtResource("4_uah6e")
+
+[node name="Water" type="CSGBox3D" parent="SecondRiver/River"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.2912, -598.933)
+use_collision = true
+size = Vector3(110, 59.8267, 126.012)
+material = ExtResource("6_7yx6c")

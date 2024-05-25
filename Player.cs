@@ -92,7 +92,7 @@ public partial class Player : CharacterBody3D
 		SetPlant(current_type);
 		
 		// for debugging
-		UnlockNewType(PlantType.BerryBush);
+		UnlockNewType(PlantType.Flower);
 		UnlockNewType(PlantType.Mushroom);
 
 		base._Ready();
