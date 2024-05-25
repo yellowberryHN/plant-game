@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsoy603st0kav"]
+[gd_scene load_steps=8 format=3 uid="uid://c1wgh7cbhe34n"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
-[ext_resource type="PackedScene" uid="uid://kp0jghqfj36b" path="res://Player.tscn" id="1_hm0pk"]
+[ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
 [ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp06v"]
