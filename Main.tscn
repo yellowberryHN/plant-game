@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsoy603st0kav"]
+[gd_scene load_steps=10 format=3 uid="uid://bsoy603st0kav"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
 [ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
 [ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
 [ext_resource type="Theme" uid="uid://y3ypxuy6opjr" path="res://resources/themes/HudTheme.tres" id="4_qx27c"]
 [ext_resource type="PackedScene" uid="uid://kbuwb8vk6xwi" path="res://House.tscn" id="5_g3csh"]
+[ext_resource type="PackedScene" uid="uid://qvj251bktrs7" path="res://FlowerField.tscn" id="6_tetbt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ynhc3"]
 
@@ -71,5 +72,8 @@ wait_time = 5.0
 one_shot = true
 
 [node name="House" parent="." instance=ExtResource("5_g3csh")]
+
+[node name="FlowerField" parent="." instance=ExtResource("6_tetbt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 66, -745)
 
 [connection signal="timeout" from="Control/UnlockLabel/Timer" to="Player" method="OnTimerTimeout"]

@@ -1,0 +1,308 @@
+[gd_scene load_steps=5 format=3 uid="uid://qvj251bktrs7"]
+
+[ext_resource type="Material" uid="uid://k6q4b1ykt7yp" path="res://resources/materials/Water.material" id="1_a4guu"]
+[ext_resource type="Material" uid="uid://cqnghff5h8bxc" path="res://resources/materials/Flowers.material" id="1_y7jop"]
+[ext_resource type="Material" uid="uid://2offynbeelsx" path="res://resources/materials/Cliff.material" id="2_bx2gs"]
+[ext_resource type="Material" uid="uid://ccu3k7q2llev0" path="res://resources/materials/Rock.material" id="4_bqbw0"]
+
+[node name="FlowerField" type="Node3D"]
+
+[node name="OpeningScene" type="Node3D" parent="."]
+
+[node name="Field" type="CSGCylinder3D" parent="OpeningScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1577, -9.661, -0.232491)
+use_collision = true
+radius = 75.0
+height = 20.0
+sides = 16
+material = ExtResource("1_y7jop")
+
+[node name="RampFromHouse" type="CSGBox3D" parent="OpeningScene/Field"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64.8336)
+size = Vector3(100, 20, 25)
+material = ExtResource("1_y7jop")
+
+[node name="GroundToJump" type="CSGPolygon3D" parent="OpeningScene/Field"]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -49.2033, 8.96547, -49.1124)
+polygon = PackedVector2Array(0, 0, 100, 0, 140, 100, -40, 100)
+depth = 100.0
+material = ExtResource("1_y7jop")
+
+[node name="Ramp" type="CSGBox3D" parent="OpeningScene/Field"]
+transform = Transform3D(1, 0, 0, 0, 0.920088, -0.391711, 0, 0.391711, 0.920088, -1.72337, 12.6413, -133.006)
+size = Vector3(50, 30, 35)
+material = ExtResource("1_y7jop")
+
+[node name="River" type="CSGBox3D" parent="OpeningScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.25435, -167.221)
+use_collision = true
+size = Vector3(200, 30, 50)
+material = ExtResource("1_a4guu")
+
+[node name="Cliffs" type="Node3D" parent="."]
+
+[node name="RoundCliff" type="CSGCylinder3D" parent="Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.1845, 0)
+use_collision = true
+radius = 100.0
+height = 150.0
+sides = 16
+material = ExtResource("2_bx2gs")
+
+[node name="Field" type="CSGCylinder3D" parent="Cliffs/RoundCliff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1577, -3.58437, -0.232491)
+operation = 2
+use_collision = true
+radius = 75.0
+height = 160.0
+sides = 16
+material = ExtResource("2_bx2gs")
+
+[node name="RampFromHouse" type="CSGBox3D" parent="Cliffs/RoundCliff/Field"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.2611, 84.9956)
+size = Vector3(98, 120, 65)
+material = ExtResource("2_bx2gs")
+
+[node name="GroundToJump" type="CSGPolygon3D" parent="Cliffs/RoundCliff/Field"]
+transform = Transform3D(1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, -49.2033, 78.9122, -32.0305)
+polygon = PackedVector2Array(0, 0, 100, 0, 140, 100, -40, 100)
+depth = 200.0
+material = ExtResource("2_bx2gs")
+
+[node name="CliffJumpLeft" type="CSGBox3D" parent="Cliffs"]
+transform = Transform3D(0.919863, 0, 0.392241, 0, 1, 0, -0.392241, 0, 0.919863, -83.1696, 35.9922, -95.4119)
+size = Vector3(30, 150, 100)
+material = ExtResource("2_bx2gs")
+
+[node name="CliffJumpRight" type="CSGBox3D" parent="Cliffs"]
+transform = Transform3D(0.920505, 0, -0.390731, 0, 1, 0, 0.390731, 0, 0.920505, 84.1328, 35.9922, -95.4119)
+size = Vector3(30, 150, 100)
+material = ExtResource("2_bx2gs")
+
+[node name="AfterFirstJump" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="AfterFirstJump"]
+transform = Transform3D(1, 0, 0, 0, 0.989994, -0.141109, 0, 0.141109, 0.989994, 0, 13.3958, -280.597)
+use_collision = true
+size = Vector3(200, 30, 204.064)
+material = ExtResource("1_y7jop")
+
+[node name="Cliffs" type="Node3D" parent="AfterFirstJump"]
+
+[node name="BigDividerCliff" type="CSGBox3D" parent="AfterFirstJump/Cliffs"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -73.8412, 6.04797, -334.751)
+use_collision = true
+size = Vector3(30, 154.014, 200)
+material = ExtResource("2_bx2gs")
+
+[node name="CliffLeft" type="CSGBox3D" parent="AfterFirstJump/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.3, 63.5785, -263.733)
+use_collision = true
+size = Vector3(30, 203.835, 246.384)
+material = ExtResource("2_bx2gs")
+
+[node name="CliffRight" type="CSGBox3D" parent="AfterFirstJump/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.44, 61.6636, -261.436)
+use_collision = true
+size = Vector3(30, 200.005, 241.792)
+material = ExtResource("2_bx2gs")
+
+[node name="Rocks" type="Node3D" parent="AfterFirstJump"]
+
+[node name="Bottom" type="CSGBox3D" parent="AfterFirstJump/Rocks"]
+transform = Transform3D(0.928395, 0.124896, 0.349976, 0, 0.941823, -0.336109, -0.371595, 0.312042, 0.874384, 12.3036, 26.6394, -315.788)
+use_collision = true
+size = Vector3(18.2378, 20, 16.4932)
+material = ExtResource("4_bqbw0")
+
+[node name="OneAboveBottom" type="CSGBox3D" parent="AfterFirstJump/Rocks"]
+transform = Transform3D(0.966499, -0.195563, 0.166235, 0.239005, 0.921832, -0.305125, -0.0935697, 0.334635, 0.937691, 26.5364, 31.4502, -318.134)
+use_collision = true
+size = Vector3(21.0544, 20, 18.5844)
+material = ExtResource("4_bqbw0")
+
+[node name="TwoAboveBottom" type="CSGBox3D" parent="AfterFirstJump/Rocks"]
+transform = Transform3D(0.995692, -0.0916607, 0.0140151, 0.0874087, 0.877365, -0.471795, 0.0309486, 0.470988, 0.881597, 41.6604, 38.6818, -329.731)
+use_collision = true
+size = Vector3(33.1551, 23.637, 20.5637)
+material = ExtResource("4_bqbw0")
+
+[node name="Middle" type="CSGBox3D" parent="AfterFirstJump/Rocks"]
+transform = Transform3D(0.994018, -0.103915, -0.0336186, 0.0922365, 0.963549, -0.251131, 0.0584894, 0.246528, 0.967369, 52.1804, 35.6277, -343.888)
+use_collision = true
+size = Vector3(52.1972, 43.6534, 20.5637)
+material = ExtResource("4_bqbw0")
+
+[node name="Top" type="CSGBox3D" parent="AfterFirstJump/Rocks"]
+transform = Transform3D(0.99863, -0.052336, 0, 0.0521368, 0.99483, -0.0871557, 0.00456138, 0.0870363, 0.996194, 60.4925, 37.9778, -355.519)
+use_collision = true
+size = Vector3(69.6616, 49.3214, 20.5637)
+material = ExtResource("4_bqbw0")
+
+[node name="AfterStairs" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="AfterStairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, -401.466)
+use_collision = true
+size = Vector3(200, 30, 100)
+material = ExtResource("1_y7jop")
+
+[node name="RampUp" type="CSGBox3D" parent="AfterStairs/Ground"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 49.5392, 25.8065, -148.382)
+use_collision = true
+size = Vector3(100, 30, 200)
+material = ExtResource("1_y7jop")
+
+[node name="CliffUnderRamp" type="CSGBox3D" parent="AfterStairs/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.5392, 1.89299, -200.709)
+use_collision = true
+size = Vector3(100, 71.3256, 95.6999)
+material = ExtResource("1_y7jop")
+
+[node name="CliffUnderRampSmall" type="CSGBox3D" parent="AfterStairs/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.5392, 0.696815, -133.932)
+use_collision = true
+size = Vector3(100, 31.9048, 95.6999)
+material = ExtResource("1_y7jop")
+
+[node name="RampDown" type="CSGBox3D" parent="AfterStairs/Ground"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -46.31, -17.6, -113.729)
+use_collision = true
+size = Vector3(130, 30, 140)
+material = ExtResource("1_y7jop")
+
+[node name="BottomGround" type="CSGBox3D" parent="AfterStairs/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -36, -198.534)
+use_collision = true
+size = Vector3(200, 30, 100)
+material = ExtResource("1_y7jop")
+
+[node name="Cliffs" type="Node3D" parent="AfterStairs"]
+
+[node name="CliffLeft" type="CSGBox3D" parent="AfterStairs/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.3, 73.1237, -611.801)
+use_collision = true
+size = Vector3(30, 222.925, 462.044)
+material = ExtResource("2_bx2gs")
+
+[node name="CliffRight" type="CSGBox3D" parent="AfterStairs/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.44, 77.3635, -610.895)
+use_collision = true
+size = Vector3(30, 231.405, 469.382)
+material = ExtResource("2_bx2gs")
+
+[node name="River" type="Node3D" parent="AfterStairs"]
+
+[node name="FirstRock" type="CSGBox3D" parent="AfterStairs/River"]
+transform = Transform3D(0.829762, -0.0910923, -0.550634, 0.0137071, 0.989619, -0.143058, 0.557949, 0.111156, 0.822396, -46.2069, 12.8792, -671.013)
+use_collision = true
+size = Vector3(18.2378, 20, 16.4932)
+material = ExtResource("4_bqbw0")
+
+[node name="SecondRock" type="CSGBox3D" parent="AfterStairs/River"]
+transform = Transform3D(0.703353, 0.0206822, -0.71054, -0.0436436, 0.998947, -0.0141248, 0.709499, 0.0409448, 0.703515, -28.1339, 11.5951, -691.96)
+use_collision = true
+size = Vector3(22.7463, 20, 17.9976)
+material = ExtResource("4_bqbw0")
+
+[node name="ThirdRock" type="CSGBox3D" parent="AfterStairs/River"]
+transform = Transform3D(0.986809, -0.1224, -0.105954, 0.119655, 0.992302, -0.0319159, 0.109045, 0.0188168, 0.993859, 20.303, 12.2464, -727.042)
+use_collision = true
+size = Vector3(12.3121, 20, 17.9976)
+material = ExtResource("4_bqbw0")
+
+[node name="MiddleRock" type="CSGBox3D" parent="AfterStairs/River"]
+transform = Transform3D(0.935092, 0.00870392, 0.354298, -0.0617657, 0.988402, 0.138734, -0.348981, -0.151613, 0.924785, -3.43262, 12.8211, -708.841)
+use_collision = true
+size = Vector3(15.5388, 20, 17.9976)
+material = ExtResource("4_bqbw0")
+
+[node name="FourthRock" type="CSGBox3D" parent="AfterStairs/River"]
+transform = Transform3D(0.504992, -0.0431562, -0.862045, -0.11159, 0.987103, -0.114787, 0.85588, 0.154161, 0.493663, 44.2068, 10.6331, -742.725)
+use_collision = true
+size = Vector3(20.3577, 20, 17.9976)
+material = ExtResource("4_bqbw0")
+
+[node name="Water" type="CSGBox3D" parent="AfterStairs/River"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -700.216)
+use_collision = true
+size = Vector3(200, 30, 120.333)
+material = ExtResource("1_a4guu")
+
+[node name="AfterSecondJump" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="AfterSecondJump"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -844.434)
+use_collision = true
+size = Vector3(200, 30, 172.669)
+material = ExtResource("1_y7jop")
+
+[node name="Cliffs" type="Node3D" parent="AfterSecondJump"]
+
+[node name="CliffLeft" type="CSGBox3D" parent="AfterSecondJump/Cliffs"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -84.158, 73.1237, -852.43)
+use_collision = true
+size = Vector3(30, 222.925, 207.924)
+material = ExtResource("2_bx2gs")
+
+[node name="CliffRight" type="CSGBox3D" parent="AfterSecondJump/Cliffs"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 73.6989, 73.1237, -852.43)
+use_collision = true
+size = Vector3(30, 222.925, 207.924)
+material = ExtResource("2_bx2gs")
+
+[node name="CliffLeftSmall" type="CSGBox3D" parent="AfterSecondJump/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0816, 73.1237, -977.762)
+use_collision = true
+size = Vector3(30, 222.925, 85.813)
+material = ExtResource("2_bx2gs")
+
+[node name="CliffRightSmall" type="CSGBox3D" parent="AfterSecondJump/Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7625, 73.1237, -977.762)
+use_collision = true
+size = Vector3(30, 222.925, 85.813)
+material = ExtResource("2_bx2gs")
+
+[node name="Stairs" type="Node3D" parent="AfterSecondJump"]
+
+[node name="Bottom" type="CSGBox3D" parent="AfterSecondJump/Stairs"]
+transform = Transform3D(0.922376, 0, -0.386292, -0.0934002, 0.970329, -0.223018, 0.374831, 0.241786, 0.895009, -14.6246, 19.1542, -938.85)
+use_collision = true
+size = Vector3(23.6135, 20, 16.4932)
+material = ExtResource("4_bqbw0")
+
+[node name="SecondStep" type="CSGBox3D" parent="AfterSecondJump/Stairs"]
+transform = Transform3D(0.999273, 0.0235113, -0.0300106, -0.0266178, 0.993827, -0.107704, 0.0272931, 0.108425, 0.993729, 4.06629, 19.567, -938.629)
+use_collision = true
+size = Vector3(21.5964, 22.3624, 18.3135)
+material = ExtResource("4_bqbw0")
+
+[node name="ThirdStep" type="CSGBox3D" parent="AfterSecondJump/Stairs"]
+transform = Transform3D(0.950857, 0.0584199, 0.304069, 0.0340705, 0.956335, -0.29028, -0.30775, 0.286375, 0.907347, 0.98181, 25.3609, -954.353)
+use_collision = true
+size = Vector3(26.8622, 22.3624, 18.3135)
+material = ExtResource("4_bqbw0")
+
+[node name="FourthStep" type="CSGBox3D" parent="AfterSecondJump/Stairs"]
+transform = Transform3D(0.983526, 0.151495, 0.0986231, -0.153115, 0.988167, 0.00902419, -0.096089, -0.0239762, 0.995084, -23.1522, 28.7954, -948.912)
+use_collision = true
+size = Vector3(29.1224, 25.8946, 18.3135)
+material = ExtResource("4_bqbw0")
+
+[node name="FifthStep" type="CSGBox3D" parent="AfterSecondJump/Stairs"]
+transform = Transform3D(0.995812, 0.0346029, 0.0846203, -0.0141955, 0.972901, -0.230785, -0.0903131, 0.228618, 0.969318, -12.4042, 33.1978, -967.881)
+use_collision = true
+size = Vector3(53.5533, 24.3472, 18.3135)
+material = ExtResource("4_bqbw0")
+
+[node name="SixthStep" type="CSGBox3D" parent="AfterSecondJump/Stairs"]
+transform = Transform3D(0.99995, 0.00145423, -0.00985734, -0.00463759, 0.943531, -0.331253, 0.00881895, 0.331282, 0.94349, -12.3387, 41.3394, -987.116)
+use_collision = true
+size = Vector3(53.5533, 24.3472, 31.6177)
+material = ExtResource("4_bqbw0")
+
+[node name="Landing" type="CSGBox3D" parent="AfterSecondJump/Stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56557, 46.5935, -1008.24)
+use_collision = true
+size = Vector3(40.0071, 24.3472, 25.1868)
+material = ExtResource("4_bqbw0")
