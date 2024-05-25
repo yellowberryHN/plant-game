@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1wgh7cbhe34n"]
+[gd_scene load_steps=9 format=3 uid="uid://bsoy603st0kav"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
-[ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
+[ext_resource type="PackedScene" uid="uid://kp0jghqfj36b" path="res://Player.tscn" id="1_hm0pk"]
 [ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
+[ext_resource type="Theme" uid="uid://y3ypxuy6opjr" path="res://resources/themes/HudTheme.tres" id="4_qx27c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp06v"]
 albedo_color = Color(0.498039, 0.498039, 0.498039, 1)
@@ -22,6 +23,7 @@ script = ExtResource("1_bu0ow")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0126533, 0.99992, 0, -0.99992, -0.0126533, 0, 30.1293, 0)
+shadow_enabled = true
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -48,3 +50,30 @@ spring_length = 20.0
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 20)
 environment = SubResource("Environment_amvdw")
 current = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UnlockLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_top = 50.0
+offset_right = 158.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme = ExtResource("4_qx27c")
+text = "New plant unlocked!"
+
+[node name="Timer" type="Timer" parent="Control/UnlockLabel"]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Control/UnlockLabel/Timer" to="Player" method="OnTimerTimeout"]

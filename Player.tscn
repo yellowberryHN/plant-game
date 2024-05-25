@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c43go38388ts"]
+[gd_scene load_steps=9 format=3 uid="uid://kp0jghqfj36b"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_wyg3h"]
 [ext_resource type="PackedScene" uid="uid://cwa50pylqll81" path="res://resources/models/Pot.glb" id="2_xytyt"]
@@ -38,6 +38,7 @@ visible = false
 mesh = SubResource("CylinderMesh_pl6uw")
 
 [node name="Mushroom" parent="Pot/Plant" instance=ExtResource("4_cetp2")]
+visible = false
 
 [node name="Direction Indicator" type="MeshInstance3D" parent="Pot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -2)

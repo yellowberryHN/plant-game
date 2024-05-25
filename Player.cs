@@ -137,6 +137,23 @@ public partial class Player : CharacterBody3D
 			GD.Print("Don't have that type yet!");
 			return;
 		}
+
+		switch (plant)
+		{
+			case PlantType.Mushroom:
+				Speed = DEFAULT_SPEED * .60f;
+				JumpVelocity = DEFAULT_JUMP_VELOCITY * 3;
+				break;
+			case PlantType.Flower:
+				Speed = DEFAULT_SPEED * 3;
+				JumpVelocity = 0f;
+				break;
+			default:
+			case PlantType.Normal:
+				Speed = DEFAULT_SPEED;
+				JumpVelocity = DEFAULT_JUMP_VELOCITY;
+				break;
+		}
 		
 		foreach (var model in plant_models.Values)
 		{
@@ -150,7 +167,25 @@ public partial class Player : CharacterBody3D
 
 	private void UnlockNewType(PlantType plant)
 	{
-			UnlockedTypes.Add(plant);
+		if (UnlockedTypes.Add(plant))
+		{
+			// display message of "New plant unlocked!"
+			Label unlockLabel = GetNode<Label>("../Control/UnlockLabel");
+			unlockLabel.Text = "New plant type unlocked: " + plant.ToString();
+			unlockLabel.Show();
+			
+			GD.Print("Showing label: " + unlockLabel.Text);
+
+			Timer timer = unlockLabel.GetNode<Timer>("Timer");
+			timer.Start();
+		}
+	}
+
+	private void OnTimerTimeout()
+	{
+		GD.Print("Hiding label");
+		Label unlockLabel = GetNode<Label>("../Control/UnlockLabel");
+		unlockLabel.Hide();
 	}
 }
 
