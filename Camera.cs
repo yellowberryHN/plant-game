@@ -1,45 +1,32 @@
 using Godot;
 using System;
 
-public partial class Camera : Marker3D
+public partial class Camera : Node3D
 {
-	private float CameraRotH;
-	private float CameraRotV;
+	private float yaw = 0f;
 
-	private Node3D CameraH;
-	private Node3D CameraV;
+	private float pitch = 0f;
 
-	[Export]
-	private float CameraTiltMin = -55.0f;
-	[Export]
-	private float CameraTiltMax = 75.0f;
+	private float yawSensitivity = .002f;
+
+	private float pitchSensitivity = .002f;
+
+	[Export] public Node3D CameraTarget;
+	[Export] public float pitchMax = 50;
+	[Export] public float pitchMin = -50;
 	
-	[Export]
-	private float SensitivityH = 0.01f;
-	[Export]
-	private float SensitivityV = 0.01f;
-	
-	[Export]
-	private float AccelerationH = 5.0f;
-	[Export]
-	private float AccelerationV = 10.0f;
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		CameraH = GetNode<Node3D>("H");
-		CameraV = GetNode<Node3D>("H/V");
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventMouseMotion eventMotion)
+		if (@event is InputEventMouseMotion eventMotion && Input.MouseMode != 0)
 		{
-			CameraRotH += -eventMotion.Relative.X;
-			CameraRotV += eventMotion.Relative.Y;
-
-			CameraRotV = Mathf.Clamp(CameraRotV, CameraTiltMin, CameraTiltMax);
+			yaw += -eventMotion.Relative.X * yawSensitivity;
+			pitch += eventMotion.Relative.Y * pitchSensitivity;
 		}
 		base._Input(@event);
 	}
@@ -47,13 +34,19 @@ public partial class Camera : Marker3D
 	// TODO: make this only fire when movement changed
 	public override void _PhysicsProcess(double delta)
 	{
-		var new_rot_h = CameraH.RotationDegrees;
-		new_rot_h.Y = (float)Mathf.Lerp(new_rot_h.Y, CameraRotH, delta * AccelerationH);
-		CameraH.RotationDegrees = new_rot_h;
-			
-		var new_rot_v = CameraH.RotationDegrees;
-		new_rot_v.X = (float)Mathf.Lerp(new_rot_v.X, CameraRotV, delta * AccelerationV);;
-		CameraV.RotationDegrees = new_rot_v;
+		Vector3 newRotation = CameraTarget.Rotation;
+		newRotation.Y = Mathf.Lerp(CameraTarget.Rotation.Y, yaw, (float)delta * 10);
+		newRotation.X = Mathf.Lerp(CameraTarget.Rotation.X, pitch, (float)delta * 10);
+		CameraTarget.Rotation = newRotation;
+
+		pitch = Mathf.Clamp(pitch, Mathf.DegToRad(pitchMin), Mathf.DegToRad(pitchMax));
+
+		float cameraInputX = Input.GetAxis("look_right", "look_left");
+		float cameraInputY = Input.GetAxis("look_down", "look_up");
+		Vector2 cameraInput = new Vector2(cameraInputX, cameraInputY);
+
+		yaw += cameraInput.X * yawSensitivity * 30;
+		pitch += cameraInput.Y * pitchSensitivity * 20;
 		
 		base._PhysicsProcess(delta);
 	}

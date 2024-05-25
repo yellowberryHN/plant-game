@@ -1,11 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1wgh7cbhe34n"]
+[gd_scene load_steps=8 format=3 uid="uid://bsoy603st0kav"]
 
-[ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
+[ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
+[ext_resource type="PackedScene" uid="uid://kp0jghqfj36b" path="res://Player.tscn" id="1_hm0pk"]
+[ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp06v"]
 albedo_color = Color(0.498039, 0.498039, 0.498039, 1)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ynhc3"]
+
+[sub_resource type="Sky" id="Sky_wpvwt"]
+sky_material = SubResource("ProceduralSkyMaterial_ynhc3")
+
+[sub_resource type="Environment" id="Environment_amvdw"]
+background_mode = 2
+sky = SubResource("Sky_wpvwt")
+ssao_enabled = true
+
 [node name="Main" type="Node3D"]
+script = ExtResource("1_bu0ow")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0126533, 0.99992, 0, -0.99992, -0.0126533, 0, 30.1293, 0)
@@ -16,4 +29,22 @@ use_collision = true
 size = Vector3(60, 2, 60)
 material = SubResource("StandardMaterial3D_jp06v")
 
-[node name="Player" parent="." instance=ExtResource("1_hm0pk")]
+[node name="Player" parent="." node_paths=PackedStringArray("CameraTarget", "CameraParent") instance=ExtResource("1_hm0pk")]
+CameraTarget = NodePath("../Camera/CameraTarget")
+CameraParent = NodePath("../Camera")
+
+[node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("CameraTarget")]
+script = ExtResource("3_basuh")
+CameraTarget = NodePath("CameraTarget")
+pitchMax = 40.0
+pitchMin = -40.0
+
+[node name="CameraTarget" type="Node3D" parent="Camera"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Camera/CameraTarget"]
+spring_length = 20.0
+
+[node name="Camera3D" type="Camera3D" parent="Camera/CameraTarget/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 20)
+environment = SubResource("Environment_amvdw")
+current = true
