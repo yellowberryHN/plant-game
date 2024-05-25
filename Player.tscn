@@ -1,19 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://kp0jghqfj36b"]
+[gd_scene load_steps=8 format=3 uid="uid://c43go38388ts"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_wyg3h"]
 [ext_resource type="PackedScene" uid="uid://cwa50pylqll81" path="res://resources/models/Pot.glb" id="2_xytyt"]
 [ext_resource type="PackedScene" uid="uid://ca0wvosc1fmo3" path="res://resources/models/Leaf.glb" id="3_w588x"]
 [ext_resource type="PackedScene" uid="uid://cyqn1u7fk1luq" path="res://resources/models/LeafMushroom.glb" id="4_cetp2"]
+[ext_resource type="PackedScene" uid="uid://c3ua5sl1mtsxr" path="res://resources/models/Flower.glb" id="5_bl73f"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jb1ms"]
 height = 2.5
 radius = 1.25
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mo0cf"]
-albedo_color = Color(1, 0, 0.282353, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_pl6uw"]
-material = SubResource("StandardMaterial3D_mo0cf")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ge20q"]
 size = Vector3(0.25, 0.25, 1)
@@ -33,11 +28,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 [node name="Normal" parent="Pot/Plant" instance=ExtResource("3_w588x")]
 visible = false
 
-[node name="BerryBush" type="MeshInstance3D" parent="Pot/Plant"]
-visible = false
-mesh = SubResource("CylinderMesh_pl6uw")
-
 [node name="Mushroom" parent="Pot/Plant" instance=ExtResource("4_cetp2")]
+visible = false
+
+[node name="Flower" parent="Pot/Plant" instance=ExtResource("5_bl73f")]
 visible = false
 
 [node name="Direction Indicator" type="MeshInstance3D" parent="Pot"]
