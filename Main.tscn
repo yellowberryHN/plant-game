@@ -1,23 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsoy603st0kav"]
+[gd_scene load_steps=11 format=3 uid="uid://bsoy603st0kav"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
 [ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
 [ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
 [ext_resource type="Theme" uid="uid://y3ypxuy6opjr" path="res://resources/themes/HudTheme.tres" id="4_qx27c"]
 [ext_resource type="PackedScene" uid="uid://kbuwb8vk6xwi" path="res://House.tscn" id="5_g3csh"]
-[ext_resource type="PackedScene" uid="uid://qvj251bktrs7" path="res://FlowerField.tscn" id="6_tetbt"]
+[ext_resource type="PackedScene" path="res://FlowerField.tscn" id="6_tetbt"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ynhc3"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_7omjx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gdwcx"]
 
 [sub_resource type="Sky" id="Sky_wpvwt"]
-sky_material = SubResource("ProceduralSkyMaterial_ynhc3")
+sky_material = SubResource("ProceduralSkyMaterial_gdwcx")
 
 [sub_resource type="Environment" id="Environment_amvdw"]
 background_mode = 2
 sky = SubResource("Sky_wpvwt")
 ssao_enabled = true
-fog_density = 0.0261
-fog_sky_affect = 0.0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_bu0ow")
@@ -39,10 +39,12 @@ pitchMin = -40.0
 [node name="CameraTarget" type="Node3D" parent="Camera"]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Camera/CameraTarget"]
-spring_length = 20.0
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+shape = SubResource("SphereShape3D_7omjx")
+spring_length = 15.0
 
 [node name="Camera3D" type="Camera3D" parent="Camera/CameraTarget/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 environment = SubResource("Environment_amvdw")
 current = true
 

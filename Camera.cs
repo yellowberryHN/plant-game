@@ -18,20 +18,23 @@ public partial class Camera : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// fix spring arm colliding with the player
+		GetNode<SpringArm3D>("CameraTarget/SpringArm3D").AddExcludedObject(GetNode<CharacterBody3D>("../Player").GetRid());
+		
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventMouseMotion eventMotion && Input.MouseMode != 0)
+		if (@event is InputEventMouseMotion eventMotion && Input.MouseMode != Input.MouseModeEnum.Visible)
 		{
 			yaw += -eventMotion.Relative.X * yawSensitivity;
-			pitch += eventMotion.Relative.Y * pitchSensitivity;
+			pitch += -eventMotion.Relative.Y * pitchSensitivity;
 		}
+		
 		base._Input(@event);
 	}
 	
-	// TODO: make this only fire when movement changed
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 newRotation = CameraTarget.Rotation;
@@ -41,12 +44,12 @@ public partial class Camera : Node3D
 
 		pitch = Mathf.Clamp(pitch, Mathf.DegToRad(pitchMin), Mathf.DegToRad(pitchMax));
 
-		float cameraInputX = Input.GetAxis("look_right", "look_left");
+		float cameraInputX = Input.GetAxis("look_left", "look_right");
 		float cameraInputY = Input.GetAxis("look_down", "look_up");
 		Vector2 cameraInput = new Vector2(cameraInputX, cameraInputY);
 
-		yaw += cameraInput.X * yawSensitivity * 30;
-		pitch += cameraInput.Y * pitchSensitivity * 20;
+		yaw += -cameraInput.X * yawSensitivity * 30;
+		pitch += -cameraInput.Y * pitchSensitivity * 20;
 		
 		base._PhysicsProcess(delta);
 	}

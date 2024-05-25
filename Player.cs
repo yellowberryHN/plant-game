@@ -1,9 +1,6 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Numerics;
-using Vector2 = Godot.Vector2;
-using Vector3 = Godot.Vector3;
+using Godot.Collections;
 
 public partial class Player : CharacterBody3D
 {	
@@ -20,21 +17,28 @@ public partial class Player : CharacterBody3D
 	private float cameraTilt = 0f;
 	private float cameraSpeed = 0f;
 	
-	public HashSet<PlantType> UnlockedTypes { get; set; } = new() { PlantType.Normal };
+	private Node3D pot;
+
+	[Export] public Array<Texture2D> Faces = new();
+	private Decal face;
+
+	public List<PlantType> UnlockedTypes = new() { PlantType.Normal };
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
 	
-	private Dictionary<PlantType, Node3D> plant_models = new();
+	private System.Collections.Generic.Dictionary<PlantType, Node3D> plant_models = new();
 	private int type_index = 0;
 
-	private Node3D pot;
+	
 	
 	private const float DEFAULT_SPEED = 15.0f;
 	private const float DEFAULT_JUMP_VELOCITY = 9.0f;
 	
 	public override void _PhysicsProcess(double delta)
 	{
+		if (Input.IsActionJustPressed("respawn")) Respawn();
+
 		CameraSmoothFollow(delta);
 		Vector3 velocity = Velocity;
 		Vector3 rotation = Rotation;
@@ -46,8 +50,10 @@ public partial class Player : CharacterBody3D
 		// Handle floor logic
 		if (IsOnFloor())
 		{
-			if (Input.IsActionJustPressed("swap"))
-				CycleType();
+			if (Input.IsActionJustPressed("swap_up"))
+				CycleType(1);
+			if (Input.IsActionJustPressed("swap_down"))
+				CycleType(-1);
 			if (Input.IsActionJustPressed("jump") && CanJump()) 
 				velocity.Y = JumpVelocity;
 		}
@@ -86,19 +92,30 @@ public partial class Player : CharacterBody3D
 	{
 		Speed = DEFAULT_SPEED;
 		JumpVelocity = DEFAULT_JUMP_VELOCITY;
+		
 		pot = GetNode<Node3D>("Pot");
+		face = pot.GetNode<Decal>("Face");
 		
 		foreach (var plant in pot.GetNode("Plant").GetChildren())
 		{
-			plant_models.Add(Enum.Parse<PlantType>(plant.Name), pot.GetNode<Node3D>($"Plant/{plant.Name}"));
+			plant_models.Add(System.Enum.Parse<PlantType>(plant.Name), pot.GetNode<Node3D>($"Plant/{plant.Name}"));
 		}
 		SetPlant(current_type);
 		
 		// for debugging
-		UnlockNewType(PlantType.Flower);
-		UnlockNewType(PlantType.Mushroom);
+		if (OS.HasFeature("editor"))
+		{
+			UnlockNewType(PlantType.Flower);
+			UnlockNewType(PlantType.Mushroom);
+		}
 
 		base._Ready();
+	}
+
+	private void SetFace(int idx)
+	{
+		if (idx >= Faces.Count) idx = 0;
+		face.TextureAlbedo = Faces[idx];
 	}
 
 	private bool CanJump()
@@ -115,22 +132,24 @@ public partial class Player : CharacterBody3D
 	private void CameraSmoothFollow(double delta)
 	{
 		Vector3 cameraOffset = new Vector3(0, 1.5f, 0).Rotated(Vector3.Up, cameraTilt);
-		cameraSpeed = 250;
+		cameraSpeed = Speed * 16;
 		float cameraTimer = Mathf.Clamp((float)delta * cameraSpeed / 20, 0, 1);
 		Transform3D newTransform = CameraParent.GlobalTransform;
 		newTransform.Origin = newTransform.Origin.Lerp(this.GlobalTransform.Origin + cameraOffset, cameraTimer);
 		CameraParent.GlobalTransform = newTransform;
 	}
 
-	private void CycleType()
+	private void CycleType(int dir)
 	{
-		type_index = (type_index + 1) % Enum.GetValues(typeof(PlantType)).Length;
-		PlantType newType = (PlantType) type_index;
+		type_index = ((type_index + dir) + UnlockedTypes.Count) % UnlockedTypes.Count;
+		GD.Print($"type idx is {type_index}");
+		PlantType newType = UnlockedTypes[type_index];
 		SetPlant(newType);
 	}
 
 	private void SetPlant(PlantType plant)
 	{
+		SetFace((int)plant);
 		if (UnlockedTypes.Contains(plant))
 		{
 			current_type = plant;
@@ -170,15 +189,15 @@ public partial class Player : CharacterBody3D
 
 	private void UnlockNewType(PlantType plant)
 	{
-		if (UnlockedTypes.Add(plant))
+		if (!UnlockedTypes.Contains(plant))
 		{
+			UnlockedTypes.Add(plant);
+			
 			// display message of "New plant unlocked!"
 			Label unlockLabel = GetNode<Label>("../Control/UnlockLabel");
-			unlockLabel.Text = "New plant type unlocked: " + plant.ToString();
+			unlockLabel.Text = $"New plant type unlocked: {plant}";
 			unlockLabel.Show();
 			
-			GD.Print("Showing label: " + unlockLabel.Text);
-
 			Timer timer = unlockLabel.GetNode<Timer>("Timer");
 			timer.Start();
 		}
