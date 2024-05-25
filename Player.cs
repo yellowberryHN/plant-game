@@ -27,6 +27,8 @@ public partial class Player : CharacterBody3D
 	
 	private Dictionary<PlantType, Node3D> plant_models = new();
 	private int type_index = 0;
+
+	private Node3D pot;
 	
 	private const float DEFAULT_SPEED = 15.0f;
 	private const float DEFAULT_JUMP_VELOCITY = 9.0f;
@@ -84,10 +86,11 @@ public partial class Player : CharacterBody3D
 	{
 		Speed = DEFAULT_SPEED;
 		JumpVelocity = DEFAULT_JUMP_VELOCITY;
+		pot = GetNode<Node3D>("Pot");
 		
-		foreach (var plant in GetNode("Pot/Plant").GetChildren())
+		foreach (var plant in pot.GetNode("Plant").GetChildren())
 		{
-			plant_models.Add(Enum.Parse<PlantType>(plant.Name), GetNode<Node3D>($"Pot/Plant/{plant.Name}"));
+			plant_models.Add(Enum.Parse<PlantType>(plant.Name), pot.GetNode<Node3D>($"Plant/{plant.Name}"));
 		}
 		SetPlant(current_type);
 		
@@ -186,6 +189,11 @@ public partial class Player : CharacterBody3D
 		GD.Print("Hiding label");
 		Label unlockLabel = GetNode<Label>("../Control/UnlockLabel");
 		unlockLabel.Hide();
+	}
+
+	private void Respawn()
+	{
+		GetTree().ReloadCurrentScene();
 	}
 }
 

@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsoy603st0kav"]
+[gd_scene load_steps=9 format=3 uid="uid://bsoy603st0kav"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
 [ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
 [ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
 [ext_resource type="Theme" uid="uid://y3ypxuy6opjr" path="res://resources/themes/HudTheme.tres" id="4_qx27c"]
 [ext_resource type="PackedScene" uid="uid://kbuwb8vk6xwi" path="res://House.tscn" id="5_g3csh"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp06v"]
-albedo_color = Color(0.498039, 0.498039, 0.498039, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ynhc3"]
 
@@ -18,6 +15,8 @@ sky_material = SubResource("ProceduralSkyMaterial_ynhc3")
 background_mode = 2
 sky = SubResource("Sky_wpvwt")
 ssao_enabled = true
+fog_density = 0.0261
+fog_sky_affect = 0.0
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_bu0ow")
@@ -25,13 +24,6 @@ script = ExtResource("1_bu0ow")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0126533, 0.99992, 0, -0.99992, -0.0126533, 0, 30.1293, 0)
 shadow_enabled = true
-
-[node name="Ground" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-visible = false
-use_collision = true
-size = Vector3(60, 2, 60)
-material = SubResource("StandardMaterial3D_jp06v")
 
 [node name="Player" parent="." node_paths=PackedStringArray("CameraTarget", "CameraParent") instance=ExtResource("1_hm0pk")]
 CameraTarget = NodePath("../Camera/CameraTarget")
@@ -60,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_qx27c")
 
 [node name="UnlockLabel" type="Label" parent="Control"]
 layout_mode = 1
@@ -67,15 +60,14 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -158.0
-offset_top = 50.0
+offset_top = 30.0
 offset_right = 158.0
-offset_bottom = 45.0
+offset_bottom = 23.0
 grow_horizontal = 2
-theme = ExtResource("4_qx27c")
 text = "New plant unlocked!"
 
 [node name="Timer" type="Timer" parent="Control/UnlockLabel"]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [node name="House" parent="." instance=ExtResource("5_g3csh")]

@@ -646,13 +646,13 @@ size = Vector3(5.11582, 12.3479, 3.34178)
 material = ExtResource("7_hhscq")
 
 [node name="Rock5" type="CSGBox3D" parent="SecondRiver/River"]
-transform = Transform3D(0.867453, 0.0156101, -0.497274, 0, 0.999508, 0.0313758, 0.497519, -0.0272171, 0.867026, 10.1909, 52.2655, -593.949)
+transform = Transform3D(0.867765, 0, -0.496974, 0, 1, 0, 0.496974, 0, 0.867765, 10.1909, 52.2655, -593.949)
 use_collision = true
 size = Vector3(22.2474, 14.0543, 34.0336)
 material = ExtResource("7_hhscq")
 
 [node name="Rock6" type="CSGBox3D" parent="SecondRiver/River"]
-transform = Transform3D(0.626862, 0.0244459, -0.778746, -0.00224373, 0.99956, 0.0295713, 0.779127, -0.0167899, 0.626641, 16.7977, 52.6537, -600.988)
+transform = Transform3D(0.626604, 0, -0.779337, 0, 1, 0, 0.779338, 0, 0.626603, 16.7977, 52.6537, -600.988)
 use_collision = true
 size = Vector3(23.9588, 15.4458, 29.9096)
 material = ExtResource("7_hhscq")
