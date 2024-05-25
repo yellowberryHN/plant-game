@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsoy603st0kav"]
+[gd_scene load_steps=10 format=3 uid="uid://bsoy603st0kav"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
 [ext_resource type="PackedScene" uid="uid://kp0jghqfj36b" path="res://Player.tscn" id="1_hm0pk"]
 [ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
 [ext_resource type="Theme" uid="uid://y3ypxuy6opjr" path="res://resources/themes/HudTheme.tres" id="4_qx27c"]
+[ext_resource type="PackedScene" uid="uid://kbuwb8vk6xwi" path="res://House.tscn" id="5_g3csh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp06v"]
 albedo_color = Color(0.498039, 0.498039, 0.498039, 1)
@@ -27,6 +28,7 @@ shadow_enabled = true
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
 use_collision = true
 size = Vector3(60, 2, 60)
 material = SubResource("StandardMaterial3D_jp06v")
@@ -75,5 +77,7 @@ text = "New plant unlocked!"
 [node name="Timer" type="Timer" parent="Control/UnlockLabel"]
 wait_time = 10.0
 one_shot = true
+
+[node name="House" parent="." instance=ExtResource("5_g3csh")]
 
 [connection signal="timeout" from="Control/UnlockLabel/Timer" to="Player" method="OnTimerTimeout"]

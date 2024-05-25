@@ -1,0 +1,260 @@
+[gd_scene load_steps=3 format=3 uid="uid://kbuwb8vk6xwi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ya6gr"]
+size = Vector3(20, 65.6261, 80.9115)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbxlk"]
+size = Vector3(30, 20, 30)
+
+[node name="House" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 2, 0, 0, 0, 100, 0, 0, -76.8555)
+use_collision = true
+size = Vector3(1, 1, 2.53711)
+
+[node name="House" type="Node3D" parent="."]
+
+[node name="BaseRectangle" type="CSGBox3D" parent="House"]
+transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10.9475, 37.6581)
+use_collision = true
+
+[node name="Fencing" type="Node3D" parent="House"]
+
+[node name="Gate" type="CSGBox3D" parent="House/Fencing"]
+transform = Transform3D(1.76001, 0, -3.79971, 0, 10, 0, 0.949928, 0, 7.04004, 5.04938, 5.32652, -18.5513)
+use_collision = true
+
+[node name="RightFence" type="CSGBox3D" parent="House/Fencing"]
+transform = Transform3D(-8.74228e-08, 0, 20, 0, 10, 0, -2, 0, -8.74228e-07, 24.2695, 5.32652, 34.4305)
+use_collision = true
+
+[node name="RightFenceFront" type="CSGBox3D" parent="House/Fencing"]
+transform = Transform3D(-8.74228e-08, 0, 30, 0, 10, 0, -2, 0, -1.31134e-06, 18.9716, 5.32652, -13.6024)
+use_collision = true
+
+[node name="LeftFenceFront" type="CSGBox3D" parent="House/Fencing"]
+transform = Transform3D(-8.74228e-08, 0, 30, 0, 10, 0, -2, 0, -1.31134e-06, -19.7903, 5.32652, -13.6024)
+use_collision = true
+
+[node name="RightLongFence" type="CSGBox3D" parent="House/Fencing"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 50, 33.3562, 5.32652, 10.3725)
+use_collision = true
+
+[node name="LeftLongFence" type="CSGBox3D" parent="House/Fencing"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 50, -34.0876, 5.32652, 10.3725)
+use_collision = true
+
+[node name="LeftFence" type="CSGBox3D" parent="House/Fencing"]
+transform = Transform3D(-8.74228e-08, 0, 20, 0, 10, 0, -2, 0, -8.74228e-07, -24.6121, 5.32652, 34.4305)
+use_collision = true
+
+[node name="Bushes" type="Node3D" parent="House"]
+
+[node name="BushFrontRight" type="CSGBox3D" parent="House/Bushes"]
+transform = Transform3D(32, 0, 0, 0, 3, 0, 0, 0, 2, 20.8305, 2.06466, -15.177)
+use_collision = true
+
+[node name="BushFrontRightSide" type="CSGBox3D" parent="House/Bushes"]
+transform = Transform3D(-2.27299e-06, 0, 2, 0, 3, 0, -52, 0, -8.74228e-08, 35.0509, 2.06466, 10.9888)
+use_collision = true
+
+[node name="BushFrontLeftSide" type="CSGBox3D" parent="House/Bushes"]
+transform = Transform3D(-2.27299e-06, 0, 2, 0, 3, 0, -52, 0, -8.74228e-08, -36.3117, 2.06466, 10.9888)
+use_collision = true
+
+[node name="BushFrontLeft" type="CSGBox3D" parent="House/Bushes"]
+transform = Transform3D(31, 0, 0, 0, 3, 0, 0, 0, 2, -21.8815, 2.06466, -15.177)
+use_collision = true
+
+[node name="BushFrontLeftBack" type="CSGBox3D" parent="House/Bushes"]
+transform = Transform3D(31, 0, 0, 0, 3, 0, 0, 0, 2, -21.8815, 2.06466, 36.7566)
+use_collision = true
+
+[node name="BushFrontRightBack" type="CSGBox3D" parent="House/Bushes"]
+transform = Transform3D(31, 0, 0, 0, 3, 0, 0, 0, 2, -0.782814, 2.06466, 36.7566)
+use_collision = true
+size = Vector3(2.36121, 1, 1)
+
+[node name="Trees" type="Node3D" parent="House"]
+
+[node name="RightSide" type="Node3D" parent="House/Trees"]
+
+[node name="Tree" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 36.8702, 30.6345, 0)
+
+[node name="Tree2" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 41.818, 30.6345, -13.7503)
+use_collision = true
+
+[node name="Tree3" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 45.3341, 30.6345, -10.1404)
+
+[node name="Tree4" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 48.0692, 30.6345, -14.7816)
+use_collision = true
+
+[node name="Tree5" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 38.2702, 30.6345, -12.6064)
+
+[node name="Tree6" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 45.6168, 30.6345, 13.1057)
+
+[node name="Tree8" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 44.6832, 30.6345, 24.4333)
+
+[node name="Tree9" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 43.9657, 30.6345, 45.4741)
+
+[node name="Tree10" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 26.8894, 30.6345, 41.1421)
+
+[node name="Tree11" type="CSGCylinder3D" parent="House/Trees/RightSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 21.4539, 30.6345, 48.2455)
+
+[node name="LeftSide" type="Node3D" parent="House/Trees"]
+
+[node name="Tree12" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -43.5783, 30.6345, 0)
+
+[node name="Tree13" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -39.4347, 30.6345, -14.3422)
+use_collision = true
+
+[node name="Tree14" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -42.7831, 30.6345, -12.3127)
+
+[node name="Tree15" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -45.2785, 30.6345, -17.5353)
+use_collision = true
+
+[node name="Tree16" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -47.4664, 30.6345, -12.5142)
+
+[node name="Tree17" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -46.005, 30.6345, -7.00869)
+
+[node name="Tree18" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -39.0799, 30.6345, 4.38687)
+
+[node name="Tree19" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -46.6127, 30.6345, 11.4629)
+
+[node name="Tree22" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -39.682, 30.6345, 27.8392)
+
+[node name="Tree24" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -35.682, 30.6345, 45.8392)
+
+[node name="Tree26" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -22.682, 30.6345, 44.8392)
+
+[node name="Tree28" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -3.256, 30.6345, 56.7585)
+
+[node name="Tree29" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -23.1787, 30.6345, 59.1536)
+
+[node name="Tree30" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 9.10314, 30.6345, 55.2501)
+
+[node name="Tree31" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 17.5033, 30.6345, 60.5714)
+
+[node name="Tree33" type="CSGCylinder3D" parent="House/Trees/LeftSide"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 31.1771, 30.6345, 57.2287)
+
+[node name="Front" type="Node3D" parent="House/Trees"]
+
+[node name="Tree13" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 38.2702, 30.6345, -39.4181)
+use_collision = true
+
+[node name="Tree14" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 25.8042, 30.6345, -29.8627)
+use_collision = true
+
+[node name="Tree15" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 6.68443, 30.6345, -45.2751)
+use_collision = true
+
+[node name="Tree19" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 21.2475, 30.6345, -66.6033)
+use_collision = true
+
+[node name="Tree20" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -15.2305, 30.6345, -84.8437)
+use_collision = true
+
+[node name="Tree21" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 39.2048, 30.6345, -114.054)
+use_collision = true
+
+[node name="Tree22" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -7.47675, 30.6345, -139.921)
+use_collision = true
+
+[node name="Tree23" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 31.7441, 30.6345, -153.782)
+use_collision = true
+
+[node name="Tree24" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 17.6968, 30.6345, -125.946)
+use_collision = true
+
+[node name="Tree25" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -38.868, 30.6345, -115.48)
+use_collision = true
+
+[node name="Tree26" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -34.9832, 30.6345, -163.853)
+use_collision = true
+
+[node name="Tree27" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -15.4897, 30.6345, -182.605)
+use_collision = true
+
+[node name="Tree28" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, 26.9103, 30.6345, -199.999)
+use_collision = true
+
+[node name="Tree16" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -16.5248, 30.6345, -33.1575)
+use_collision = true
+
+[node name="Tree17" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -25.1067, 30.6345, -46.407)
+use_collision = true
+
+[node name="Tree18" type="CSGCylinder3D" parent="House/Trees/Front"]
+transform = Transform3D(3, 0, 0, 0, 30, 0, 0, 0, 3, -44.0442, 30.6345, -31.4142)
+use_collision = true
+
+[node name="CollisionBoxes" type="Node3D" parent="."]
+
+[node name="RightOfHouse" type="StaticBody3D" parent="CollisionBoxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.1013, 17.813, 26.2438)
+
+[node name="RightOfHouse" type="CollisionShape3D" parent="CollisionBoxes/RightOfHouse"]
+shape = SubResource("BoxShape3D_ya6gr")
+
+[node name="Roof" type="StaticBody3D" parent="CollisionBoxes"]
+
+[node name="Roof" type="CollisionShape3D" parent="CollisionBoxes/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0314856, 30.1406, 42.6069)
+shape = SubResource("BoxShape3D_lbxlk")
+
+[node name="BackOfHouse" type="StaticBody3D" parent="CollisionBoxes"]
+
+[node name="BackOfHouse" type="CollisionShape3D" parent="CollisionBoxes/BackOfHouse"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.23872, 17.813, 41.6997)
+shape = SubResource("BoxShape3D_ya6gr")
+
+[node name="LeftOfHouse" type="StaticBody3D" parent="CollisionBoxes"]
+
+[node name="LeftOfHouse" type="CollisionShape3D" parent="CollisionBoxes/LeftOfHouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.281, 17.813, 26.2438)
+shape = SubResource("BoxShape3D_ya6gr")
