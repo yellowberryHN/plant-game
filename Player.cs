@@ -18,8 +18,20 @@ public partial class Player : CharacterBody3D
 	private float cameraSpeed = 0f;
 	
 	private Node3D pot;
-
-	[Export] public Array<Texture2D> Faces = new();
+	
+	[Export] public Array<Texture2D> Faces = new()
+	{
+		GD.Load<Texture2D>("res://resources/textures/faces/Happy.png"),
+		GD.Load<Texture2D>("res://resources/textures/faces/Sad.png"),
+		GD.Load<Texture2D>("res://resources/textures/faces/VerySad.png"),
+		GD.Load<Texture2D>("res://resources/textures/faces/Smile.png"),
+		GD.Load<Texture2D>("res://resources/textures/faces/Shock.png"),
+		GD.Load<Texture2D>("res://resources/textures/faces/Shoot.png"),
+		GD.Load<Texture2D>("res://resources/textures/faces/Pleased.png"),
+		GD.Load<Texture2D>("res://resources/textures/faces/Unsure.png"),
+		GD.Load<Texture2D>("res://resources/textures/faces/Upset.png")
+	};
+	
 	private Decal face;
 
 	public List<PlantType> UnlockedTypes = new() { PlantType.Normal };
