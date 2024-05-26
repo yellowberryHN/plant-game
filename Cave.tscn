@@ -1,0 +1,181 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqgmqouxue0ih"]
+
+[ext_resource type="Material" uid="uid://2offynbeelsx" path="res://resources/materials/Cliff.material" id="1_wtsta"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_utdn0"]
+size = Vector3(70.8608, 34.1646, 69.5266)
+
+[node name="Cave" type="Node3D"]
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, -25.6567)
+use_collision = true
+size = Vector3(50, 30, 100)
+
+[node name="GroundUnderCave" type="CSGBox3D" parent="Ground"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -7.24744)
+size = Vector3(50, 30, 100)
+
+[node name="CaveStructure" type="Node3D" parent="."]
+
+[node name="CaveOuter" type="CSGSphere3D" parent="CaveStructure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37.0718)
+use_collision = true
+radius = 40.0
+
+[node name="CaveInnerCylinder" type="CSGCylinder3D" parent="CaveStructure/CaveOuter"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 5.96748, 25.4407)
+operation = 2
+radius = 20.0
+height = 35.0
+sides = 16
+
+[node name="CaveInnerSphere" type="CSGSphere3D" parent="CaveStructure/CaveOuter/CaveInnerCylinder"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -25.4407, 5.96748)
+radius = 30.0
+
+[node name="Cliffs" type="Node3D" parent="."]
+
+[node name="CliffRightFront" type="CSGBox3D" parent="Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9757, 23.0018, 7.78057)
+use_collision = true
+size = Vector3(30, 105.352, 32.9745)
+material = ExtResource("1_wtsta")
+
+[node name="CliffBack" type="CSGBox3D" parent="Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.199886, 23.0018, -84.699)
+use_collision = true
+size = Vector3(125.255, 105.352, 32.9745)
+material = ExtResource("1_wtsta")
+
+[node name="CliffLeftFront" type="CSGBox3D" parent="Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.8982, 23.0018, 7.78057)
+use_collision = true
+size = Vector3(30, 105.352, 32.9745)
+material = ExtResource("1_wtsta")
+
+[node name="CliffLeftSide" type="CSGBox3D" parent="Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.1324, 23.0018, -27.6128)
+use_collision = true
+size = Vector3(30, 105.352, 103.761)
+material = ExtResource("1_wtsta")
+
+[node name="CliffRightSide" type="CSGBox3D" parent="Cliffs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3998, 23.0018, -27.6128)
+use_collision = true
+size = Vector3(30, 105.352, 103.761)
+material = ExtResource("1_wtsta")
+
+[node name="TopOfCave" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.0145, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TopOfCave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.072998, 2.91772, -31.9154)
+shape = SubResource("BoxShape3D_utdn0")
+
+[node name="InnerCave" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000980854, 0.0150261, -14.4507)
+
+[node name="Spike1" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -4.26715, 2.35108, -25.9247)
+use_collision = true
+radius = 2.0
+height = 8.0
+sides = 16
+cone = true
+
+[node name="Spike2" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -2.0127, 2.35108, -30.2758)
+use_collision = true
+radius = 2.5
+height = 16.0
+sides = 16
+cone = true
+
+[node name="Spike3" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 2.53852, 6.40912, -26.1854)
+use_collision = true
+radius = 3.0
+height = 18.0
+sides = 16
+cone = true
+
+[node name="Spike4" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -0.867571, 9.09926, -21.1046)
+use_collision = true
+radius = 3.5
+height = 24.0
+sides = 16
+cone = true
+
+[node name="Spike5" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 17.2527, 22.4558, -21.1046)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+cone = true
+
+[node name="Spike6" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 18.4759, 20.0628, -17.9491)
+use_collision = true
+radius = 1.0
+height = 7.0
+sides = 16
+cone = true
+
+[node name="Spike7" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 13.9114, 25.9835, -18.0427)
+use_collision = true
+radius = 1.0
+height = 7.0
+sides = 16
+cone = true
+
+[node name="Spike8" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -13.3453, 25.9835, -16.5666)
+use_collision = true
+radius = 1.0
+height = 7.0
+sides = 16
+cone = true
+
+[node name="Spike9" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -16.4595, 22.2272, -23.4657)
+use_collision = true
+radius = 1.0
+height = 9.0
+sides = 16
+cone = true
+
+[node name="Spike10" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -12.9864, 24.281, -26.0916)
+use_collision = true
+radius = 1.0
+height = 5.0
+sides = 16
+cone = true
+
+[node name="Spike11" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, -7.92276, 24.0114, -35.3591)
+use_collision = true
+radius = 1.0
+height = 7.0
+sides = 16
+cone = true
+
+[node name="Spike12" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0.887232, 24.0114, -32.8314)
+use_collision = true
+radius = 1.0
+height = 9.0
+sides = 16
+cone = true
+
+[node name="Spike13" type="CSGCylinder3D" parent="InnerCave"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 9.89356, 24.9364, -34.5355)
+use_collision = true
+radius = 1.0
+height = 7.0
+sides = 16
+cone = true

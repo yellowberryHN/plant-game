@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bsoy603st0kav"]
+[gd_scene load_steps=12 format=3 uid="uid://bsoy603st0kav"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
 [ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
 [ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
 [ext_resource type="Theme" uid="uid://y3ypxuy6opjr" path="res://resources/themes/HudTheme.tres" id="4_qx27c"]
 [ext_resource type="PackedScene" uid="uid://kbuwb8vk6xwi" path="res://House.tscn" id="5_g3csh"]
-[ext_resource type="PackedScene" path="res://FlowerField.tscn" id="6_tetbt"]
+[ext_resource type="PackedScene" uid="uid://qvj251bktrs7" path="res://FlowerField.tscn" id="6_tetbt"]
+[ext_resource type="PackedScene" uid="uid://dqgmqouxue0ih" path="res://Cave.tscn" id="7_j1xgf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7omjx"]
 
@@ -27,6 +28,7 @@ transform = Transform3D(1, 0, 0, 0, -0.0126533, 0.99992, 0, -0.99992, -0.0126533
 shadow_enabled = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("CameraTarget", "CameraParent") instance=ExtResource("1_hm0pk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07891, 130.584, -1770.8)
 CameraTarget = NodePath("../Camera/CameraTarget")
 CameraParent = NodePath("../Camera")
 
@@ -77,5 +79,8 @@ one_shot = true
 
 [node name="FlowerField" parent="." instance=ExtResource("6_tetbt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 66, -745)
+
+[node name="Cave" parent="." instance=ExtResource("7_j1xgf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1947, 124.568, -1780.45)
 
 [connection signal="timeout" from="Control/UnlockLabel/Timer" to="Player" method="OnTimerTimeout"]
