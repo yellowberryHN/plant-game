@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsoy603st0kav"]
+[gd_scene load_steps=13 format=3 uid="uid://bsoy603st0kav"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_bu0ow"]
 [ext_resource type="PackedScene" uid="uid://c43go38388ts" path="res://Player.tscn" id="1_hm0pk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://kbuwb8vk6xwi" path="res://House.tscn" id="5_g3csh"]
 [ext_resource type="PackedScene" uid="uid://qvj251bktrs7" path="res://FlowerField.tscn" id="6_tetbt"]
 [ext_resource type="PackedScene" uid="uid://dqgmqouxue0ih" path="res://Cave.tscn" id="7_j1xgf"]
+[ext_resource type="PackedScene" uid="uid://7j10j0bx0ifo" path="res://Key.tscn" id="8_m6x2i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7omjx"]
 
@@ -49,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 environment = SubResource("Environment_amvdw")
 current = true
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_qx27c")
 
-[node name="UnlockLabel" type="Label" parent="Control"]
+[node name="UnlockLabel" type="Label" parent="UI"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -71,9 +72,51 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "New plant unlocked!"
 
-[node name="Timer" type="Timer" parent="Control/UnlockLabel"]
+[node name="Timer" type="Timer" parent="UI/UnlockLabel"]
 wait_time = 5.0
 one_shot = true
+
+[node name="WinScreen" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WinLabel" type="Label" parent="UI/WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = -66.0
+offset_right = 197.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.768627, 0, 1)
+theme_override_colors/font_outline_color = Color(0.402182, 0.301917, 4.33177e-07, 1)
+theme_override_font_sizes/font_size = 96
+text = "You win!"
+
+[node name="Label" type="Label" parent="UI/WinScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 150.0
+offset_right = 20.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press R to play again!"
 
 [node name="House" parent="." instance=ExtResource("5_g3csh")]
 
@@ -83,4 +126,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 66, -745)
 [node name="Cave" parent="." instance=ExtResource("7_j1xgf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1947, 124.568, -1780.45)
 
-[connection signal="timeout" from="Control/UnlockLabel/Timer" to="Player" method="OnTimerTimeout"]
+[node name="Key" parent="." node_paths=PackedStringArray("DestructionTarget") instance=ExtResource("8_m6x2i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 146.75, -1816)
+DestructionTarget = NodePath("../House/House/Door")
+
+[connection signal="timeout" from="UI/UnlockLabel/Timer" to="Player" method="OnTimerTimeout"]
+
+[editable path="House"]

@@ -208,7 +208,7 @@ public partial class Player : CharacterBody3D
 			UnlockedTypes.Add(plant);
 			
 			// display message of "New plant unlocked!"
-			Label unlockLabel = GetNode<Label>("../Control/UnlockLabel");
+			Label unlockLabel = GetNode<Label>("../UI/UnlockLabel");
 			unlockLabel.Text = $"New plant type unlocked: {plant}";
 			unlockLabel.Show();
 			
@@ -220,7 +220,7 @@ public partial class Player : CharacterBody3D
 	private void OnTimerTimeout()
 	{
 		GD.Print("Hiding label");
-		Label unlockLabel = GetNode<Label>("../Control/UnlockLabel");
+		Label unlockLabel = GetNode<Label>("../UI/UnlockLabel");
 		unlockLabel.Hide();
 	}
 
@@ -235,10 +235,17 @@ public partial class Player : CharacterBody3D
 		{
 			UnlockNewType(trigger.unlockable);
 		}
-
-		if (area is Water water)
+		if (area is Water)
 		{
 			Respawn();
+		}
+		if (area is WinTrigger)
+		{
+			GD.Print("win trigger touched");
+			if (GetNode("../Key") == null)
+			{
+				GetNode<Control>("../UI/WinScreen").Show();
+			}
 		}
 	}
 }

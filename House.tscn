@@ -1,15 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://kbuwb8vk6xwi"]
+[gd_scene load_steps=17 format=3 uid="uid://kbuwb8vk6xwi"]
 
 [ext_resource type="Material" uid="uid://dkllnk7rsr4e3" path="res://resources/materials/Grass.material" id="1_tqyyr"]
 [ext_resource type="Material" uid="uid://dh121672msya" path="res://resources/materials/Brick.material" id="2_uoo4h"]
 [ext_resource type="Material" uid="uid://cef1xoaxtlxu4" path="res://resources/materials/Fence.material" id="3_wkvn1"]
 [ext_resource type="Material" uid="uid://b8vdn04eq436k" path="res://resources/materials/Tree.material" id="4_uah6e"]
-[ext_resource type="Material" uid="uid://trmx0em8tsud" path="res://resources/materials/Roof.material" id="5_dflve"]
+[ext_resource type="Material" path="res://resources/materials/Roof.material" id="5_dflve"]
 [ext_resource type="Material" uid="uid://2offynbeelsx" path="res://resources/materials/Cliff.material" id="5_vd5yo"]
 [ext_resource type="Texture2D" uid="uid://cs3d4424bhynd" path="res://resources/textures/Door.png" id="6_1bcjw"]
 [ext_resource type="Material" uid="uid://k6q4b1ykt7yp" path="res://resources/materials/Water.material" id="6_7yx6c"]
 [ext_resource type="Material" uid="uid://ccu3k7q2llev0" path="res://resources/materials/Rock.material" id="7_hhscq"]
 [ext_resource type="Script" path="res://Water.cs" id="10_oc7cq"]
+[ext_resource type="Script" path="res://WinTrigger.cs" id="11_4c16r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mf1u"]
 albedo_texture = ExtResource("6_1bcjw")
@@ -23,6 +24,9 @@ size = Vector3(30, 20, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4g2v8"]
 size = Vector3(100, 10, 65)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h7ywu"]
+size = Vector3(9, 16, 4)
 
 [node name="House" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -720,3 +724,10 @@ script = ExtResource("10_oc7cq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SecondRiverArea"]
 shape = SubResource("BoxShape3D_4g2v8")
+
+[node name="WinTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 30.5)
+script = ExtResource("11_4c16r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WinTrigger"]
+shape = SubResource("BoxShape3D_h7ywu")

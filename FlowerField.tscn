@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://qvj251bktrs7"]
 
 [ext_resource type="Material" uid="uid://k6q4b1ykt7yp" path="res://resources/materials/Water.material" id="1_a4guu"]
-[ext_resource type="Material" uid="uid://cqnghff5h8bxc" path="res://resources/materials/Flowers.material" id="1_y7jop"]
+[ext_resource type="Material" path="res://resources/materials/Flowers.material" id="1_y7jop"]
 [ext_resource type="Material" uid="uid://2offynbeelsx" path="res://resources/materials/Cliff.material" id="2_bx2gs"]
 [ext_resource type="Material" uid="uid://ccu3k7q2llev0" path="res://resources/materials/Rock.material" id="4_bqbw0"]
 [ext_resource type="Script" path="res://UnlockTrigger.cs" id="5_vqpis"]

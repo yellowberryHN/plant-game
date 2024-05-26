@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://7j10j0bx0ifo"]
+
+[ext_resource type="Script" path="res://Key.cs" id="1_8hno1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_su5sm"]
+albedo_color = Color(1, 0, 1, 1)
+emission_enabled = true
+emission = Color(0.411765, 0.270588, 0.729412, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_07ttq"]
+material = SubResource("StandardMaterial3D_su5sm")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kqxgj"]
+size = Vector3(2, 2, 2)
+
+[node name="Key" type="Node3D"]
+script = ExtResource("1_8hno1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_07ttq")
+
+[node name="KeyTrigger" type="Area3D" parent="."]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KeyTrigger"]
+shape = SubResource("BoxShape3D_kqxgj")
+
+[connection signal="body_entered" from="KeyTrigger" to="." method="OnBodyEntered"]
