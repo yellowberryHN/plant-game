@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://qvj251bktrs7"]
+[gd_scene load_steps=7 format=3 uid="uid://clmvj2my5uxiv"]
 
 [ext_resource type="Material" uid="uid://k6q4b1ykt7yp" path="res://resources/materials/Water.material" id="1_a4guu"]
-[ext_resource type="Material" uid="uid://cqnghff5h8bxc" path="res://resources/materials/Flowers.material" id="1_y7jop"]
+[ext_resource type="Material" path="res://resources/materials/Flowers.material" id="1_y7jop"]
 [ext_resource type="Material" uid="uid://2offynbeelsx" path="res://resources/materials/Cliff.material" id="2_bx2gs"]
 [ext_resource type="Material" uid="uid://ccu3k7q2llev0" path="res://resources/materials/Rock.material" id="4_bqbw0"]
+[ext_resource type="Script" path="res://UnlockTrigger.cs" id="5_vqpis"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jusny"]
+size = Vector3(100, 100, 10)
 
 [node name="FlowerField" type="Node3D"]
 
@@ -134,7 +138,7 @@ size = Vector3(52.1972, 43.6534, 20.5637)
 material = ExtResource("4_bqbw0")
 
 [node name="Top" type="CSGBox3D" parent="AfterFirstJump/Rocks"]
-transform = Transform3D(0.99863, -0.052336, 0, 0.0521368, 0.99483, -0.0871557, 0.00456138, 0.0870363, 0.996194, 60.4925, 37.9778, -355.519)
+transform = Transform3D(0.99863, -0.052336, 0, 0.0521368, 0.99483, -0.0871557, 0.00456138, 0.0870363, 0.996194, 60.4925, 37.5778, -355.519)
 use_collision = true
 size = Vector3(69.6616, 49.3214, 20.5637)
 material = ExtResource("4_bqbw0")
@@ -306,3 +310,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56557, 46.5935, -1008.24)
 use_collision = true
 size = Vector3(40.0071, 24.3472, 25.1868)
 material = ExtResource("4_bqbw0")
+
+[node name="UnlockTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 59, 68)
+monitoring = false
+script = ExtResource("5_vqpis")
+unlockable = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnlockTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
+shape = SubResource("BoxShape3D_jusny")

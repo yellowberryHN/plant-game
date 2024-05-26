@@ -4,8 +4,9 @@ using Godot.Collections;
 
 public partial class Player : CharacterBody3D
 {	
-	public float Speed = 5.0f;
-	public float JumpVelocity = 4.5f;
+	public float Speed;
+	public float JumpVelocity;
+	
 	private float turnSpeed = 12f;
 	
 	[Export]
@@ -14,8 +15,8 @@ public partial class Player : CharacterBody3D
 	[Export] public Node3D CameraTarget;
 	[Export] public Node3D CameraParent;
 
-	private float cameraTilt = 0f;
-	private float cameraSpeed = 0f;
+	private float cameraTilt;
+	private float cameraSpeed;
 	
 	private Node3D pot;
 	
@@ -45,7 +46,7 @@ public partial class Player : CharacterBody3D
 	
 	
 	private const float DEFAULT_SPEED = 15.0f;
-	private const float DEFAULT_JUMP_VELOCITY = 9.0f;
+	private const float DEFAULT_JUMP_VELOCITY = 11.0f;
 	
 	public override void _PhysicsProcess(double delta)
 	{
@@ -115,11 +116,11 @@ public partial class Player : CharacterBody3D
 		SetPlant(current_type);
 		
 		// for debugging
-		if (OS.HasFeature("editor"))
-		{
-			UnlockNewType(PlantType.Flower);
-			UnlockNewType(PlantType.Mushroom);
-		}
+		// if (OS.HasFeature("editor"))
+		// {
+		// 	UnlockNewType(PlantType.Flower);
+		// 	UnlockNewType(PlantType.Mushroom);
+		// }
 
 		base._Ready();
 	}
@@ -153,7 +154,8 @@ public partial class Player : CharacterBody3D
 
 	private void CycleType(int dir)
 	{
-		type_index = ((type_index + dir) + UnlockedTypes.Count) % UnlockedTypes.Count;
+		if (UnlockedTypes.Count < 2) return;
+		type_index = (type_index + dir + UnlockedTypes.Count) % UnlockedTypes.Count;
 		GD.Print($"type idx is {type_index}");
 		PlantType newType = UnlockedTypes[type_index];
 		SetPlant(newType);
@@ -225,6 +227,14 @@ public partial class Player : CharacterBody3D
 	private void Respawn()
 	{
 		GetTree().ReloadCurrentScene();
+	}
+
+	private void OnAreaEntered(Area3D area)
+	{
+		if (area is UnlockTrigger trigger)
+		{
+			UnlockNewType(trigger.unlockable);
+		}
 	}
 }
 
