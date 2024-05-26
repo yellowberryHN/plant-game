@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://Camera.cs" id="3_basuh"]
 [ext_resource type="Theme" uid="uid://y3ypxuy6opjr" path="res://resources/themes/HudTheme.tres" id="4_qx27c"]
 [ext_resource type="PackedScene" uid="uid://kbuwb8vk6xwi" path="res://House.tscn" id="5_g3csh"]
-[ext_resource type="PackedScene" uid="uid://clmvj2my5uxiv" path="res://FlowerField.tscn" id="6_tetbt"]
-[ext_resource type="PackedScene" path="res://Cave.tscn" id="7_j1xgf"]
+[ext_resource type="PackedScene" uid="uid://qvj251bktrs7" path="res://FlowerField.tscn" id="6_tetbt"]
+[ext_resource type="PackedScene" uid="uid://dqgmqouxue0ih" path="res://Cave.tscn" id="7_j1xgf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7omjx"]
 

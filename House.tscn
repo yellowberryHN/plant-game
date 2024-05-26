@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://kbuwb8vk6xwi"]
+[gd_scene load_steps=15 format=3 uid="uid://kbuwb8vk6xwi"]
 
 [ext_resource type="Material" uid="uid://dkllnk7rsr4e3" path="res://resources/materials/Grass.material" id="1_tqyyr"]
 [ext_resource type="Material" uid="uid://dh121672msya" path="res://resources/materials/Brick.material" id="2_uoo4h"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cs3d4424bhynd" path="res://resources/textures/Door.png" id="6_1bcjw"]
 [ext_resource type="Material" uid="uid://k6q4b1ykt7yp" path="res://resources/materials/Water.material" id="6_7yx6c"]
 [ext_resource type="Material" uid="uid://ccu3k7q2llev0" path="res://resources/materials/Rock.material" id="7_hhscq"]
+[ext_resource type="Script" path="res://Water.cs" id="10_oc7cq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mf1u"]
 albedo_texture = ExtResource("6_1bcjw")
@@ -19,6 +20,9 @@ size = Vector3(20, 65.6261, 80.9115)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lbxlk"]
 size = Vector3(30, 20, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4g2v8"]
+size = Vector3(100, 10, 65)
 
 [node name="House" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -372,12 +376,14 @@ material = ExtResource("5_vd5yo")
 
 [node name="LeftBackToMidSlope" type="CSGPolygon3D" parent="SideCliffs"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -79.0792, 56.0611, -289.45)
+use_collision = true
 polygon = PackedVector2Array(0, 0, 0, 100, 200, 0)
 depth = 30.0
 material = ExtResource("5_vd5yo")
 
 [node name="RightBackToMidSlope" type="CSGPolygon3D" parent="SideCliffs"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 48.4911, 56.0611, -292.436)
+use_collision = true
 polygon = PackedVector2Array(0, 0, 0, 100, 200, 0)
 depth = 30.0
 material = ExtResource("5_vd5yo")
@@ -698,3 +704,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.2912, -598.933)
 use_collision = true
 size = Vector3(110, 59.8267, 126.012)
 material = ExtResource("6_7yx6c")
+
+[node name="FirstRiverArea" type="Area3D" parent="."]
+monitoring = false
+script = ExtResource("10_oc7cq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstRiverArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.72115, -148.113)
+shape = SubResource("BoxShape3D_4g2v8")
+
+[node name="SecondRiverArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 47.8847, -567.541)
+monitoring = false
+script = ExtResource("10_oc7cq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SecondRiverArea"]
+shape = SubResource("BoxShape3D_4g2v8")

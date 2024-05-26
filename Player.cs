@@ -178,7 +178,7 @@ public partial class Player : CharacterBody3D
 		{
 			case PlantType.Mushroom:
 				Speed = DEFAULT_SPEED * .60f;
-				JumpVelocity = DEFAULT_JUMP_VELOCITY * 3;
+				JumpVelocity = DEFAULT_JUMP_VELOCITY * 2;
 				break;
 			case PlantType.Flower:
 				Speed = DEFAULT_SPEED * 3;
@@ -234,6 +234,11 @@ public partial class Player : CharacterBody3D
 		if (area is UnlockTrigger trigger)
 		{
 			UnlockNewType(trigger.unlockable);
+		}
+
+		if (area is Water water)
+		{
+			Respawn();
 		}
 	}
 }
