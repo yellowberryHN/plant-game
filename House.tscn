@@ -1,12 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://kbuwb8vk6xwi"]
+[gd_scene load_steps=13 format=3 uid="uid://kbuwb8vk6xwi"]
 
 [ext_resource type="Material" uid="uid://dkllnk7rsr4e3" path="res://resources/materials/Grass.material" id="1_tqyyr"]
 [ext_resource type="Material" uid="uid://dh121672msya" path="res://resources/materials/Brick.material" id="2_uoo4h"]
 [ext_resource type="Material" uid="uid://cef1xoaxtlxu4" path="res://resources/materials/Fence.material" id="3_wkvn1"]
 [ext_resource type="Material" uid="uid://b8vdn04eq436k" path="res://resources/materials/Tree.material" id="4_uah6e"]
+[ext_resource type="Material" uid="uid://trmx0em8tsud" path="res://resources/materials/Roof.material" id="5_dflve"]
 [ext_resource type="Material" uid="uid://2offynbeelsx" path="res://resources/materials/Cliff.material" id="5_vd5yo"]
+[ext_resource type="Texture2D" uid="uid://cs3d4424bhynd" path="res://resources/textures/Door.png" id="6_1bcjw"]
 [ext_resource type="Material" uid="uid://k6q4b1ykt7yp" path="res://resources/materials/Water.material" id="6_7yx6c"]
 [ext_resource type="Material" uid="uid://ccu3k7q2llev0" path="res://resources/materials/Rock.material" id="7_hhscq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mf1u"]
+albedo_texture = ExtResource("6_1bcjw")
+uv1_scale = Vector3(-1, -1, -1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ya6gr"]
 size = Vector3(20, 65.6261, 80.9115)
@@ -16,8 +22,6 @@ size = Vector3(30, 20, 30)
 
 [node name="House" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="Area3D" type="Area3D" parent="."]
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 2, 0, 0, 0, 100, 0, -17.7627, -28.2593)
@@ -30,6 +34,12 @@ material = ExtResource("1_tqyyr")
 [node name="BaseRectangle" type="CSGBox3D" parent="House"]
 transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 20, 0, 10.9475, 37.6581)
 use_collision = true
+material = ExtResource("2_uoo4h")
+
+[node name="Hole" type="CSGBox3D" parent="House/BaseRectangle"]
+transform = Transform3D(0.0333333, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, -0.117884, -0.394945)
+operation = 2
+size = Vector3(8, 16, 5)
 material = ExtResource("2_uoo4h")
 
 [node name="Fencing" type="Node3D" parent="House"]
@@ -289,6 +299,19 @@ radius = 2.0
 height = 100.0
 material = ExtResource("4_uah6e")
 
+[node name="Roof" type="CSGPolygon3D" parent="House"]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, 1, -0.707107, 0.707107, 0, -0.707107, -0.707107, -4.37114e-08, 16.4851, 20.7493, 50.1115)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 18, 18, 18)
+depth = 34.0
+material = ExtResource("5_dflve")
+
+[node name="Door" type="CSGBox3D" parent="House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.63016, 27.4579)
+use_collision = true
+size = Vector3(8, 16, 1)
+material = SubResource("StandardMaterial3D_5mf1u")
+
 [node name="CollisionBoxes" type="Node3D" parent="."]
 
 [node name="RightOfHouse" type="StaticBody3D" parent="CollisionBoxes"]
@@ -362,14 +385,14 @@ material = ExtResource("5_vd5yo")
 [node name="FirstRiver" type="Node3D" parent="."]
 
 [node name="Tree" type="CSGCylinder3D" parent="FirstRiver"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.47675, 62.0219, -242.127)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2016, 62.0219, -242.127)
 use_collision = true
 radius = 2.0
 height = 100.0
 material = ExtResource("4_uah6e")
 
 [node name="Tree1" type="CSGCylinder3D" parent="FirstRiver"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4897, 54.8239, -182.605)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4496, 54.8239, -182.605)
 use_collision = true
 radius = 2.0
 height = 100.0
@@ -455,6 +478,12 @@ material = ExtResource("4_uah6e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0526, 25.9792, -271.614)
 use_collision = true
 size = Vector3(97.5968, 33.3524, 30)
+material = ExtResource("5_vd5yo")
+
+[node name="CliffRamp" type="CSGBox3D" parent="FirstStaircase/Cliffs/BigCliff"]
+transform = Transform3D(0.173648, 0, 0.984808, 0.0204524, 0.999784, -0.00360631, -0.984595, 0.0207679, 0.173611, 18.5736, -0.550201, 45.8809)
+use_collision = true
+size = Vector3(69.442, 33.3524, 22.7527)
 material = ExtResource("5_vd5yo")
 
 [node name="LeftOfStair" type="CSGBox3D" parent="FirstStaircase/Cliffs"]
@@ -614,7 +643,7 @@ material = ExtResource("7_hhscq")
 [node name="SecondRiver" type="Node3D" parent="."]
 
 [node name="Ground" type="CSGBox3D" parent="SecondRiver"]
-transform = Transform3D(1, 0, 0, 0, 0.996535, -0.0831735, 0, 0.0831735, 0.996535, 0, 38.039, -635.069)
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, 38.039, -635.069)
 use_collision = true
 size = Vector3(110, 52.8058, 71.6796)
 material = ExtResource("1_tqyyr")

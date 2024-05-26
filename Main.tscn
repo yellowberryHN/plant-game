@@ -28,7 +28,6 @@ transform = Transform3D(1, 0, 0, 0, -0.0126533, 0.99992, 0, -0.99992, -0.0126533
 shadow_enabled = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("CameraTarget", "CameraParent") instance=ExtResource("1_hm0pk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07891, 130.584, -1770.8)
 CameraTarget = NodePath("../Camera/CameraTarget")
 CameraParent = NodePath("../Camera")
 
